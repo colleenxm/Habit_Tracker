@@ -3,9 +3,7 @@
 ## Brief Overview
 I plan to build a habit tracker for users to create goals and check in regularly over a period of time, ending with a visual representation
 of their commitment to their habits, like the hand written example below.
-<p align="center">
-  <img width="500" height="450" src="/bin/data/habit_tracker_example.jpg">
-</p>
+![Example](https://i.pinimg.com/originals/ca/c1/56/cac1563b454d07db266240fc45854ed1.jpg)
 
 ## Anticipated Steps
 1) Build interface for users to add goals
