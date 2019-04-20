@@ -109,6 +109,7 @@
     <ClCompile Include="goal_interface.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="user.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -1439,6 +1440,7 @@
     <ClInclude Include="goal_interface.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="user.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />
