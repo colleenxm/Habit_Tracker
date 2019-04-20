@@ -2,6 +2,8 @@
 
 //--------------------------------------------------------------
 void ofApp::setup() {
+	ofSetWindowTitle("HABIT TRACKER");
+	//add background music background_music_.load(kIntroMusicPath_);
 	ofBackground(185, 224, 217, 255);
 	bertilda.load("bertilda.ttf", 72);
 	bFirst = true;

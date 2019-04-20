@@ -106,18 +106,35 @@
     <ClCompile Include="..\..\..\..\addons\ofxOsc\libs\oscpack\src\osc\OscTypes.cpp">
       <Filter>addons\ofxOsc\libs\oscpack\src\osc</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\addons\ofxUIUtils-master\src\ofxClipboard.cpp">
+      <Filter>addons\ofxUIUtils-master\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\addons\ofxUIUtils-master\src\ofxColorPicker.cpp">
+      <Filter>addons\ofxUIUtils-master\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\addons\ofxUIUtils-master\src\ofxDropDownMenu.cpp">
+      <Filter>addons\ofxUIUtils-master\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\addons\ofxUIUtils-master\src\ofxImgButton.cpp">
+      <Filter>addons\ofxUIUtils-master\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\addons\ofxUIUtils-master\src\ofxTextInputField.cpp">
+      <Filter>addons\ofxUIUtils-master\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\addons\ofxUIUtils-master\src\ofxUIButton.cpp">
+      <Filter>addons\ofxUIUtils-master\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\addons\ofxUIUtils-master\src\ofxUISlider.cpp">
+      <Filter>addons\ofxUIUtils-master\src</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\addons\ofxVectorGraphics\src\ofxVectorGraphics.cpp">
       <Filter>addons\ofxVectorGraphics\src</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\addons\ofxVectorGraphics\libs\CreEPS.cpp">
       <Filter>addons\ofxVectorGraphics\libs</Filter>
     </ClCompile>
-    <ClCompile Include="habitUtils.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="user.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
+    <ClCompile Include="habitUtils.cpp" />
+    <ClCompile Include="user.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -326,6 +343,12 @@
     </Filter>
     <Filter Include="addons\ofxOsc\libs\oscpack\src\osc">
       <UniqueIdentifier>{EDACB89C-9768-9551-4D41-B590}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxUIUtils-master">
+      <UniqueIdentifier>{94D40194-64DC-5209-C0F5-C0BC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxUIUtils-master\src">
+      <UniqueIdentifier>{78DF5EE4-194B-AAB5-102E-02D0}</UniqueIdentifier>
     </Filter>
     <Filter Include="addons\ofxVectorGraphics">
       <UniqueIdentifier>{5A7F3658-B06B-DB97-F4E1-DD19}</UniqueIdentifier>
@@ -1469,6 +1492,33 @@
     <ClInclude Include="..\..\..\..\addons\ofxOsc\libs\oscpack\src\osc\OscTypes.h">
       <Filter>addons\ofxOsc\libs\oscpack\src\osc</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\addons\ofxUIUtils-master\src\ofxClipboard.h">
+      <Filter>addons\ofxUIUtils-master\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\addons\ofxUIUtils-master\src\ofxColorPicker.h">
+      <Filter>addons\ofxUIUtils-master\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\addons\ofxUIUtils-master\src\ofxDropDownMenu.h">
+      <Filter>addons\ofxUIUtils-master\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\addons\ofxUIUtils-master\src\ofxImgButton.h">
+      <Filter>addons\ofxUIUtils-master\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\addons\ofxUIUtils-master\src\ofxTextInputField.h">
+      <Filter>addons\ofxUIUtils-master\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\addons\ofxUIUtils-master\src\ofxUIButton.h">
+      <Filter>addons\ofxUIUtils-master\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\addons\ofxUIUtils-master\src\ofxUIFontRenderer.h">
+      <Filter>addons\ofxUIUtils-master\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\addons\ofxUIUtils-master\src\ofxUISlider.h">
+      <Filter>addons\ofxUIUtils-master\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\addons\ofxUIUtils-master\src\ofxUIUtils.h">
+      <Filter>addons\ofxUIUtils-master\src</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\addons\ofxVectorGraphics\src\ofxVectorGraphics.h">
       <Filter>addons\ofxVectorGraphics\src</Filter>
     </ClInclude>
@@ -1478,17 +1528,13 @@
     <ClInclude Include="..\..\..\..\addons\ofxVectorGraphics\libs\CreEPS_Types.hpp">
       <Filter>addons\ofxVectorGraphics\libs</Filter>
     </ClInclude>
-    <ClInclude Include="habitUtils.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="user.h">
-      <Filter>src</Filter>
-    </ClInclude>
+    <ClInclude Include="habitUtils.h" />
+    <ClInclude Include="user.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\DEVELOPMENT.md" />
+    <None Include="DEVELOPMENT.md" />
   </ItemGroup>
 </Project>
