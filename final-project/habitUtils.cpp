@@ -23,8 +23,10 @@ bool habitUtils::fileExists(std::string& file_name) {
 	std::ifstream infile(file_name);
 	return infile.good();
 }
-void habitUtils::createJson() {
-
+void habitUtils::createJson(std::string file_name) {
+	std::ofstream file{ 
+		file_name + ".json"
+	};
 }
 void habitUtils::updateJson() {
 
@@ -47,11 +49,11 @@ void habitUtils::trackCurrentDay(user user) {
 		}
 	}
 }
-void habitUtils::habitCreator() {
+void habitUtils::habitCreator(user user) {
 	for (int i = 0; i < user.getNumOfHabits(); i++) {
 		std::string input = "";
 		std::cout << "What would you like to name this habit?";
 		std::getline(std::cin, input);
-		user.setHabitName(getUserHabits.at(i), input);
+		user.setHabitName(user.getUserHabits.at(i), input);
 	}
 }

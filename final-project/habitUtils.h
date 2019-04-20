@@ -24,7 +24,7 @@ public:
 	/**
 	Create new json file from existing user
 	*/
-	void createJson();
+	void createJson(std::string file_name);
 	/**
 	Send changes from user class to the user's json file
 	*/
@@ -40,6 +40,6 @@ public:
 	/**
 	Loop through and create habits
 	*/
-	void habitCreator();
+	void habitCreator(user user);
 };
 
