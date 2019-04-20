@@ -27,7 +27,10 @@ public:
 	void circleResolutionChanged(int & circleResolution);
 	void ringButtonPressed();
 
-	bool bHide;
+	bool bFirst;
+	string typeStr;
+
+	ofTrueTypeFont  bertilda;
 
 	ofxFloatSlider radius;
 	ofxColorSlider color;

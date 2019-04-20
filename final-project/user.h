@@ -22,8 +22,8 @@ public:
 	void setHabitName(Habit habit, std::string input);
 private:
 	std::string user_name;
-	std::vector<Habit> user_habits;
 	int num_of_habits;
+	std::vector<Habit> user_habits;
 };
 
 

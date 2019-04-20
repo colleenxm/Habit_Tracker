@@ -8,6 +8,9 @@ user::user() {
 user::user(std::string name, int habit_number) {
 	user_name = name;
 	num_of_habits = habit_number;
+	for (int i = 0; i < habit_number; i++) {
+		user_habits.push_back(new Habit());
+	}
 }
 user::~user() {
 }

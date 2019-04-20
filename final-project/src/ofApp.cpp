@@ -2,24 +2,14 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+	ofSetBackgroundColor(185,224,217,255);
 	ofSetVerticalSync(true);
-	// we add this listener before setting up so the initial circle resolution is correct
-	circleResolution.addListener(this, &ofApp::circleResolutionChanged);
-	ringButton.addListener(this, &ofApp::ringButtonPressed);
-
-	gui.setup(); // most of the time you don't need a name
-	gui.add(filled.setup("fill", true));
-	gui.add(radius.setup("radius", 140, 10, 300));
-	gui.add(center.setup("center", ofVec2f(ofGetWidth()*.5, ofGetHeight()*.5), ofVec2f(0, 0), ofVec2f(ofGetWidth(), ofGetHeight())));
-	gui.add(color.setup("color", ofColor(100, 100, 140), ofColor(0, 0), ofColor(255, 255)));
-	gui.add(circleResolution.setup("circle res", 5, 3, 90));
-	gui.add(twoCircles.setup("two circles"));
-	gui.add(ringButton.setup("ring"));
-	gui.add(screenSize.setup("screen size", ofToString(ofGetWidth()) + "x" + ofToString(ofGetHeight())));
-
-	bHide = false;
-
-	ring.load("ring.wav");
+	ofTrueTypeFont::setGlobalDpi(72);
+	bertilda.load("bertilda.ttf", 14, true, true);
+	bertilda.setLineHeight(18.0f);
+	bertilda.setLetterSpacing(1.037);
+	bFirst = true;
+	typeStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\n0123456789,:&!?";
 }
 
 //--------------------------------------------------------------
@@ -44,35 +34,14 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-	ofBackgroundGradient(ofColor::white, ofColor::gray);
-
-	if (filled) {
-		ofFill();
-	}
-	else {
-		ofNoFill();
-	}
-
-	ofSetColor(color);
-	if (twoCircles) {
-		ofDrawCircle(center->x - radius * .5, center->y, radius);
-		ofDrawCircle(center->x + radius * .5, center->y, radius);
-	}
-	else {
-		ofDrawCircle((ofVec2f)center, radius);
-	}
-
-	// auto draw?
-	// should the gui control hiding?
-	if (!bHide) {
-		gui.draw();
-	}
+	ofSetColor(225);
+	bertilda.drawString("Habit Tracker", 30, 35);
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
 	if (key == 'h') {
-		bHide = !bHide;
+		//bHide = !bHide;
 	}
 	else if (key == 's') {
 		gui.saveToFile("settings.xml");
