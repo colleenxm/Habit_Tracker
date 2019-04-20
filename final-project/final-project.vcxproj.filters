@@ -43,6 +43,12 @@
     <ClCompile Include="..\..\..\..\addons\ofxGui\src\ofxToggle.cpp">
       <Filter>addons\ofxGui\src</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\addons\ofxJSON-master\src\ofxJSONElement.cpp">
+      <Filter>addons\ofxJSON-master\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\addons\ofxJSON-master\libs\jsoncpp\src\jsoncpp.cpp">
+      <Filter>addons\ofxJSON-master\libs\jsoncpp\src</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\addons\ofxOpenCv\src\ofxCvColorImage.cpp">
       <Filter>addons\ofxOpenCv\src</Filter>
     </ClCompile>
@@ -106,8 +112,12 @@
     <ClCompile Include="..\..\..\..\addons\ofxVectorGraphics\libs\CreEPS.cpp">
       <Filter>addons\ofxVectorGraphics\libs</Filter>
     </ClCompile>
-    <ClCompile Include="user.cpp" />
-    <ClCompile Include="habitUtils.cpp" />
+    <ClCompile Include="habitUtils.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="user.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -121,6 +131,27 @@
     </Filter>
     <Filter Include="addons\ofxGui\src">
       <UniqueIdentifier>{645E9533-4DCD-6179-1CDF-CB65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxJSON-master">
+      <UniqueIdentifier>{EC8814B8-9630-4FB5-38ED-CAAD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxJSON-master\src">
+      <UniqueIdentifier>{C7A086C0-22E5-4A70-87F1-73F5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxJSON-master\libs">
+      <UniqueIdentifier>{B637EBF1-4422-2CC1-6991-33CF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxJSON-master\libs\jsoncpp">
+      <UniqueIdentifier>{2DB2A52E-8F91-8A37-C94D-7981}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxJSON-master\libs\jsoncpp\include">
+      <UniqueIdentifier>{8072CE4B-5B27-3353-320C-3B04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxJSON-master\libs\jsoncpp\include\json">
+      <UniqueIdentifier>{C82BEC39-6AFA-3790-2293-AE90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxJSON-master\libs\jsoncpp\src">
+      <UniqueIdentifier>{133D470F-C0AC-6264-BF9D-89CB}</UniqueIdentifier>
     </Filter>
     <Filter Include="addons\ofxOpenCv">
       <UniqueIdentifier>{FFA81411-43B9-BD99-75AF-1DC3}</UniqueIdentifier>
@@ -345,6 +376,18 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\addons\ofxGui\src\ofxToggle.h">
       <Filter>addons\ofxGui\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\addons\ofxJSON-master\src\ofxJSON.h">
+      <Filter>addons\ofxJSON-master\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\addons\ofxJSON-master\src\ofxJSONElement.h">
+      <Filter>addons\ofxJSON-master\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\addons\ofxJSON-master\libs\jsoncpp\include\json\json-forwards.h">
+      <Filter>addons\ofxJSON-master\libs\jsoncpp\include\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\addons\ofxJSON-master\libs\jsoncpp\include\json\json.h">
+      <Filter>addons\ofxJSON-master\libs\jsoncpp\include\json</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\addons\ofxOpenCv\src\ofxCvBlob.h">
       <Filter>addons\ofxOpenCv\src</Filter>
@@ -1435,8 +1478,12 @@
     <ClInclude Include="..\..\..\..\addons\ofxVectorGraphics\libs\CreEPS_Types.hpp">
       <Filter>addons\ofxVectorGraphics\libs</Filter>
     </ClInclude>
-    <ClInclude Include="user.h" />
-    <ClInclude Include="habitUtils.h" />
+    <ClInclude Include="habitUtils.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="user.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />
