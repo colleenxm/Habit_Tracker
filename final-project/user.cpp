@@ -27,3 +27,6 @@ void user::setHabitArray(Habit habit, bool is_done) {
 	habit.habit_done.push_back(is_done);
 }
 
+void user::setHabitName(Habit habit, std::string input) {
+	habit.name = input;
+}

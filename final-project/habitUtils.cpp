@@ -48,5 +48,10 @@ void habitUtils::trackCurrentDay(user user) {
 	}
 }
 void habitUtils::habitCreator() {
-
+	for (int i = 0; i < user.getNumOfHabits(); i++) {
+		std::string input = "";
+		std::cout << "What would you like to name this habit?";
+		std::getline(std::cin, input);
+		user.setHabitName(getUserHabits.at(i), input);
+	}
 }

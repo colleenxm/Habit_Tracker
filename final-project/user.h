@@ -19,6 +19,7 @@ public:
 	int getNumOfHabits();
 	std::string getHabitName(Habit habit);
 	void setHabitArray(Habit habit, bool is_done);
+	void setHabitName(Habit habit, std::string input);
 private:
 	std::string user_name;
 	std::vector<Habit> user_habits;
