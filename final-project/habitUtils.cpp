@@ -35,6 +35,7 @@ void habitUtils::updateJson() {
 void habitUtils::prettyPrint() {
 
 }
+/**
 void habitUtils::trackCurrentDay(user user) {
 	for (int i = 0; i < user.getNumOfHabits(); i++) {
 		//ask if habit done
@@ -57,4 +58,4 @@ void habitUtils::habitCreator(user user) {
 		std::getline(std::cin, input);
 		user.setHabitName(user.getUserHabits.at(i), input);
 	}
-}
+}*/

@@ -1,16 +1,14 @@
 #pragma once
 
 #include "ofMain.h"
-#include "ofxGui.h"
 
 class ofApp : public ofBaseApp {
 
 public:
+
 	void setup();
 	void update();
 	void draw();
-
-	void exit();
 
 	void keyPressed(int key);
 	void keyReleased(int key);
@@ -23,25 +21,8 @@ public:
 	void windowResized(int w, int h);
 	void dragEvent(ofDragInfo dragInfo);
 	void gotMessage(ofMessage msg);
-
-	void circleResolutionChanged(int & circleResolution);
-	void ringButtonPressed();
-
 	bool bFirst;
 	string typeStr;
+	ofTrueTypeFont bertilda;
 
-	ofTrueTypeFont  bertilda;
-
-	ofxFloatSlider radius;
-	ofxColorSlider color;
-	ofxVec2Slider center;
-	ofxIntSlider circleResolution;
-	ofxToggle filled;
-	ofxButton twoCircles;
-	ofxButton ringButton;
-	ofxLabel screenSize;
-
-	ofxPanel gui;
-
-	ofSoundPlayer ring;
 };
