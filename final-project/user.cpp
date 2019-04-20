@@ -1,7 +1,7 @@
 #include "user.h"
-//class with habbit struct for parsing JSON file
+//class for parsing JSON file
 
-
+//default constructor
 user::user()
 {
 }

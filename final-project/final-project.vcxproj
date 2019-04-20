@@ -184,7 +184,7 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="goal_interface.cpp" />
+    <ClCompile Include="habitUtils.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="..\..\..\..\addons\ofxGui\src\ofxBaseGui.cpp" />
@@ -221,7 +221,7 @@
     <ClCompile Include="user.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="goal_interface.h" />
+    <ClInclude Include="habitUtils.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="..\..\..\..\addons\ofxGui\src\ofxBaseGui.h" />
     <ClInclude Include="..\..\..\..\addons\ofxGui\src\ofxButton.h" />
