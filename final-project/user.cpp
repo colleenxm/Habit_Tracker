@@ -13,8 +13,7 @@ user::user(std::string name, int habit_number) {
 		user_habits_.push_back(random);
 	}
 }
-user::~user() {
-}
+
 std::string user::getUserName() { //make all getters const
 	return user_name_;
 }

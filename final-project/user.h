@@ -4,7 +4,6 @@
 #include <vector> 
 class user
 {
-	struct Habit;
 public:
 	struct Habit {
 		std::string name;
@@ -14,8 +13,6 @@ public:
 	user();
 	//constructor with username
 	user(std::string name, int habit_number);
-
-	~user();
 
 	std::string getUserName();
 

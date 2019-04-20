@@ -36,10 +36,25 @@ void habitUtils::prettyPrint() {
 
 }
 void habitUtils::trackCurrentDay(user user) {
+	std::vector<user::Habit> habits = user.getUserHabits();
+
+	for (const auto& curr_habit : habits) {
+		std::string input = "";
+		std::cout << "Did you complete: " << user.getHabitName(curr_habit) << " today?";
+		std::getline(std::cin, input);
+		//append either true or false to habit array
+		if (input == "Yes" || input == "yes" || input == "true") {
+			user.setHabitArray(curr_habit, true);
+		}
+		else {
+			user.setHabitArray(curr_habit, false);
+		}
+	}
+	/*
 	for (int i = 0; i < user.getNumOfHabits(); i++) {
 		//ask if habit done
 		std::string input = "";
-		std::cout << "Did you complete: " << user.getHabitName(user.getUserHabits.at(i)) << " today?";
+		std::cout << "Did you complete: " << user.getHabitName(user.getUserHabits[i]) << " today?";
 		std::getline(std::cin, input);
 		//append either true or false to habit array
 		if (input == "Yes" || input == "yes" || input == "true") {
@@ -48,13 +63,21 @@ void habitUtils::trackCurrentDay(user user) {
 		else {
 			user.setHabitArray(user.getUserHabits.at(i), false);
 		}
-	}
+	}*/
 }
 void habitUtils::habitCreator(user user) {
+	std::vector<user::Habit> habits = user.getUserHabits();
+	for (const auto& curr_habit : habits) {
+		std::string input = "";
+		std::cout << "What would you like to name this habit?";
+		std::getline(std::cin, input);
+		user.setHabitName(curr_habit, input);
+	}
+	/*
 	for (int i = 0; i < user.getNumOfHabits(); i++) {
 		std::string input = "";
 		std::cout << "What would you like to name this habit?";
 		std::getline(std::cin, input);
 		user.setHabitName(user.getUserHabits.at(i), input);
-	}
+	}*/
 }
