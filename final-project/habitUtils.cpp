@@ -32,8 +32,20 @@ void habitUtils::updateJson() {
 void habitUtils::prettyPrint() {
 
 }
-void habitUtils::trackCurrentDay() {
-	
+void habitUtils::trackCurrentDay(user user) {
+	for (int i = 0; i < user.getNumOfHabits(); i++) {
+		//ask if habit done
+		std::string input = "";
+		std::cout << "Did you complete: " << user.getHabitName(user.getUserHabits.at(i)) << " today?";
+		std::getline(std::cin, input);
+		//appead either true or false to 
+		if (input == "Yes" || input == "yes" || input == "true") {
+			user.setHabitArray(user.getUserHabits.at(i), true);
+		}
+		else {
+			user.setHabitArray(user.getUserHabits.at(i), false);
+		}
+	}
 }
 void habitUtils::habitCreator() {
 

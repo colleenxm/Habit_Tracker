@@ -4,6 +4,7 @@
 #include <iostream>
 #include <cstdio>
 #include <vector>  
+#include "user.h"
 class habitUtils
 {
 public:
@@ -35,7 +36,7 @@ public:
 	/**
 	Ask if each habit was done today and update habit array
 	*/
-	void trackCurrentDay();
+	void trackCurrentDay(user user);
 	/**
 	Loop through and create habits
 	*/

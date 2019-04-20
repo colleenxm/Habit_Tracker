@@ -3,7 +3,6 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
 	ofSetVerticalSync(true);
-
 	// we add this listener before setting up so the initial circle resolution is correct
 	circleResolution.addListener(this, &ofApp::circleResolutionChanged);
 	ringButton.addListener(this, &ofApp::ringButtonPressed);
