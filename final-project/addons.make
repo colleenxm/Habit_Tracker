@@ -1,6 +1,6 @@
 ofxGui
+ofxInputField-master
 ofxJSON-master
 ofxOpenCv
 ofxOsc
-ofxUIUtils-master
 ofxVectorGraphics

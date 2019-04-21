@@ -43,6 +43,9 @@
     <ClCompile Include="..\..\..\..\addons\ofxGui\src\ofxToggle.cpp">
       <Filter>addons\ofxGui\src</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\addons\ofxInputField-master\src\ofxInputField.cpp">
+      <Filter>addons\ofxInputField-master\src</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\addons\ofxJSON-master\src\ofxJSONElement.cpp">
       <Filter>addons\ofxJSON-master\src</Filter>
     </ClCompile>
@@ -127,6 +130,12 @@
     </Filter>
     <Filter Include="addons\ofxGui\src">
       <UniqueIdentifier>{645E9533-4DCD-6179-1CDF-CB65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxInputField-master">
+      <UniqueIdentifier>{06AE688C-D3B4-12AF-5DFC-3041}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxInputField-master\src">
+      <UniqueIdentifier>{A7F5D06A-A263-2871-B853-C99C}</UniqueIdentifier>
     </Filter>
     <Filter Include="addons\ofxJSON-master">
       <UniqueIdentifier>{EC8814B8-9630-4FB5-38ED-CAAD}</UniqueIdentifier>
@@ -372,6 +381,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\addons\ofxGui\src\ofxToggle.h">
       <Filter>addons\ofxGui\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\addons\ofxInputField-master\src\ofxInputField.h">
+      <Filter>addons\ofxInputField-master\src</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\addons\ofxJSON-master\src\ofxJSON.h">
       <Filter>addons\ofxJSON-master\src</Filter>
