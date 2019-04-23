@@ -19,7 +19,8 @@ void ofApp::draw() {
 	case SHOW_INTRO:
 		ofSetColor(0);
 		title_font_.drawString("Habit Tracker", 200, 150);
-			break;
+		break;
+	}
 }
 
 
