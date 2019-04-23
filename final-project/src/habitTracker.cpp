@@ -1,13 +1,11 @@
-#include "ofApp.h"
+#include "habitTracker.h"
 
 //--------------------------------------------------------------
 void ofApp::setup() {
+	curr_game_state_ = SHOW_INTRO; // Init this to your first state
 	ofSetWindowTitle("HABIT TRACKER");
-	//add background music background_music_.load(kIntroMusicPath_);
 	ofBackground(185, 224, 217, 255);
-	bertilda.load("bertilda.ttf", 72);
-	bFirst = true;
-	typeStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\n0123456789,:&!?";
+	title_font_.load("title_font_.ttf", 72);
 }
 
 //--------------------------------------------------------------
@@ -17,8 +15,11 @@ void ofApp::update() {
 
 //--------------------------------------------------------------
 void ofApp::draw() {
-	ofSetColor(0);
-	bertilda.drawString("Habit Tracker", 200, 150);
+	switch (curr_game_state_) {
+	case SHOW_INTRO:
+		ofSetColor(0);
+		title_font_.drawString("Habit Tracker", 200, 150);
+			break;
 }
 
 

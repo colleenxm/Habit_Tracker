@@ -186,7 +186,7 @@
   <ItemGroup>
     <ClCompile Include="habitUtils.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\ofApp.cpp" />
+    <ClCompile Include="src\habitTracker.cpp" />
     <ClCompile Include="..\..\..\..\addons\ofxGui\src\ofxBaseGui.cpp" />
     <ClCompile Include="..\..\..\..\addons\ofxGui\src\ofxButton.cpp" />
     <ClCompile Include="..\..\..\..\addons\ofxGui\src\ofxColorPicker.cpp" />
@@ -197,7 +197,6 @@
     <ClCompile Include="..\..\..\..\addons\ofxGui\src\ofxSlider.cpp" />
     <ClCompile Include="..\..\..\..\addons\ofxGui\src\ofxSliderGroup.cpp" />
     <ClCompile Include="..\..\..\..\addons\ofxGui\src\ofxToggle.cpp" />
-    <ClCompile Include="..\..\..\..\addons\ofxInputField-master\src\ofxInputField.cpp" />
     <ClCompile Include="..\..\..\..\addons\ofxJSON-master\src\ofxJSONElement.cpp" />
     <ClCompile Include="..\..\..\..\addons\ofxJSON-master\libs\jsoncpp\src\jsoncpp.cpp" />
     <ClCompile Include="..\..\..\..\addons\ofxOpenCv\src\ofxCvColorImage.cpp" />
@@ -225,7 +224,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="habitUtils.h" />
-    <ClInclude Include="src\ofApp.h" />
+    <ClInclude Include="src\habitTracker.h" />
     <ClInclude Include="..\..\..\..\addons\ofxGui\src\ofxBaseGui.h" />
     <ClInclude Include="..\..\..\..\addons\ofxGui\src\ofxButton.h" />
     <ClInclude Include="..\..\..\..\addons\ofxGui\src\ofxColorPicker.h" />
@@ -237,7 +236,6 @@
     <ClInclude Include="..\..\..\..\addons\ofxGui\src\ofxSlider.h" />
     <ClInclude Include="..\..\..\..\addons\ofxGui\src\ofxSliderGroup.h" />
     <ClInclude Include="..\..\..\..\addons\ofxGui\src\ofxToggle.h" />
-    <ClInclude Include="..\..\..\..\addons\ofxInputField-master\src\ofxInputField.h" />
     <ClInclude Include="..\..\..\..\addons\ofxJSON-master\src\ofxJSON.h" />
     <ClInclude Include="..\..\..\..\addons\ofxJSON-master\src\ofxJSONElement.h" />
     <ClInclude Include="..\..\..\..\addons\ofxJSON-master\libs\jsoncpp\include\json\json-forwards.h" />

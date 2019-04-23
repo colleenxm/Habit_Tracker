@@ -23,6 +23,12 @@ public:
 	void gotMessage(ofMessage msg);
 	bool bFirst;
 	string typeStr;
-	ofTrueTypeFont bertilda;
-
+	ofTrueTypeFont title_font_;
+private:
+	enum GameState {
+		SHOW_INTRO = 0,
+		NEW_USER, 
+		STAGE_2, // RENAME THIS
+	};
+	GameState curr_game_state_;
 };
