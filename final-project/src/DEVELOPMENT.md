@@ -10,4 +10,4 @@
 * Roadblock in back end - cannot figure out how to write to a json file. 
 * Switching to work on GUI for a bit because currently is just the GUI example from ofxGUI. May use ofxDATGUI. 
 ##4/23/19
-* Added enum to habitTracker.h in order to switch game states based on user input.
+* Added enum to ofApp.h in order to switch game states based on user input.

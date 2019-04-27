@@ -184,10 +184,9 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="habitUtils.cpp" />
     <ClCompile Include="src\habitUtils.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\habitTracker.cpp" />
+    <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="..\..\..\..\addons\ofxGui\src\ofxBaseGui.cpp" />
     <ClCompile Include="..\..\..\..\addons\ofxGui\src\ofxButton.cpp" />
     <ClCompile Include="..\..\..\..\addons\ofxGui\src\ofxColorPicker.cpp" />
@@ -222,11 +221,9 @@
     <ClCompile Include="..\..\..\..\addons\ofxVectorGraphics\src\ofxVectorGraphics.cpp" />
     <ClCompile Include="..\..\..\..\addons\ofxVectorGraphics\libs\CreEPS.cpp" />
     <ClCompile Include="src\user.cpp" />
-    <ClCompile Include="user.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="habitUtils.h" />
-    <ClInclude Include="src\habitTracker.h" />
+    <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="..\..\..\..\addons\ofxGui\src\ofxBaseGui.h" />
     <ClInclude Include="..\..\..\..\addons\ofxGui\src\ofxButton.h" />
     <ClInclude Include="..\..\..\..\addons\ofxGui\src\ofxColorPicker.h" />
@@ -607,7 +604,6 @@
     <ClInclude Include="..\..\..\..\addons\ofxVectorGraphics\libs\CreEPS_Types.hpp" />
     <ClInclude Include="src\habitUtils.h" />
     <ClInclude Include="src\user.h" />
-    <ClInclude Include="user.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="$(OF_ROOT)\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj">
@@ -622,7 +618,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="DEVELOPMENT.md" />
     <None Include="src\DEVELOPMENT.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

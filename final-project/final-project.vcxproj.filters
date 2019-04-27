@@ -106,15 +106,13 @@
     <ClCompile Include="..\..\..\..\addons\ofxVectorGraphics\libs\CreEPS.cpp">
       <Filter>addons\ofxVectorGraphics\libs</Filter>
     </ClCompile>
-    <ClCompile Include="habitUtils.cpp" />
-    <ClCompile Include="user.cpp" />
-    <ClCompile Include="src\habitTracker.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\habitUtils.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\user.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ofApp.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1471,15 +1469,13 @@
     <ClInclude Include="..\..\..\..\addons\ofxVectorGraphics\libs\CreEPS_Types.hpp">
       <Filter>addons\ofxVectorGraphics\libs</Filter>
     </ClInclude>
-    <ClInclude Include="habitUtils.h" />
-    <ClInclude Include="user.h" />
-    <ClInclude Include="src\habitTracker.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="src\habitUtils.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\user.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ofApp.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1487,7 +1483,6 @@
     <ResourceCompile Include="icon.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="DEVELOPMENT.md" />
     <None Include="src\DEVELOPMENT.md">
       <Filter>src</Filter>
     </None>
