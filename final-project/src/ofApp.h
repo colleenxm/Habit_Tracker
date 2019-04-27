@@ -5,6 +5,7 @@
 #include "ofxCenteredTrueTypeFont.h"
 #include "ofxGui.h"
 #include "ofxOscParameterSync.h"
+#include "ofxDatGuiTextInput.h"
 
 class ofApp : public ofBaseApp {
 
@@ -66,6 +67,7 @@ private:
 
 	User current_user;
 	GameState curr_game_state_;
+	ofxDatGuiTextInput* myInput;
 	ofxInputField<std::string> user_name;
 	ofxCenteredTrueTypeFont title_font_; //changed to ofxcentered true type font
 	ofxCenteredTrueTypeFont subtitle_font_;

@@ -9,6 +9,7 @@ void ofApp::setup() {
 	subtitle_font_.load("subtitle_font_.ttf", 18);
 	button_font_.load("button_font_.ttf", 13);
 	SetUpButtons();
+	myInput = new ofxDatGuiTextInput("TEXT INPUT", "Type Something Here");
 }
 
 void ofApp::SetUpButtons() {
@@ -59,6 +60,9 @@ void ofApp::update() {
 
 //--------------------------------------------------------------
 void ofApp::draw() {
+	ofSetColor(0);
+	myInput->draw();
+	
 	switch (curr_game_state_) {
 	case SHOW_INTRO:
 		ofSetColor(0);
