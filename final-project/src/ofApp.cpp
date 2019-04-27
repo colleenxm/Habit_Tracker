@@ -62,6 +62,7 @@ void ofApp::SetUpButtons() {
 
 //--------------------------------------------------------------
 void ofApp::update() {
+	std::vector<User::Habit> habits = current_user_.getUserHabits();
 	switch (curr_game_state_) {
 	case NEW_USER:
 		current_user_.setUserName("Colleen");
@@ -73,19 +74,35 @@ void ofApp::update() {
 		current_user_.setUserName("Colleen");
 		current_user_.setHabitNum(6);
 		break;
-		/**
-		case ADD_HABITS:
-			//loop thru habits and add them
-			break;
+	case ADD_HABITS:
+		for (const auto& curr_habit : habits) {
+			std::string input = "Drink water!";
+			subtitle_font_.drawStringCentered("What would you like to name this habit?", ofGetWidth() / 2, ((ofGetHeight() / 8) + 125));
+			//take input
+			current_user_.setHabitName(curr_habit, input);
+		}
+		//loop thru habits and add them
+		break;
 
-		case CHECK_HABIT_DONE:
-			//check if each ahbit was done that day
-			break;
+	case CHECK_HABIT_DONE:
+		for (const auto& curr_habit : habits) {
+			std::string input = "";
+			std::string question = "Did you complete " + current_user_.getHabitName(curr_habit) + " today?";
+			subtitle_font_.drawStringCentered(question, ofGetWidth() / 2, ((ofGetHeight() / 8) + 125));
+			//take input 
+			if (input == "Yes" || input == "yes" || input == "true") { 
+				//find better way of checking user's input - possibly change to buttons for yes/no
+				current_user_.setHabitArray(curr_habit, true);
+			}
+			else {
+				current_user_.setHabitArray(curr_habit, false);
+			}
+		}
+		break;
 
-		case DISPLAY_HABITS:
-			//pretty print each of the habits in nice graphical form
-			break;
-		}*/
+	case DISPLAY_HABITS:
+		//pretty print each of the habits in nice graphical form
+		break;
 	}
 }
 
@@ -110,6 +127,7 @@ void ofApp::draw() {
 
 	case NEW_USER:
 		ofSetColor(0);
+		title_font_.drawStringCentered("Welcome!", ofGetWidth() / 2, (ofGetHeight() / 8));
 		subtitle_font_.drawStringCentered("What is your name?", ofGetWidth() / 2, ((ofGetHeight() / 8) + 85));
 		subtitle_font_.drawStringCentered("How many habits would you like to track?", ofGetWidth() / 2, ((ofGetHeight() / 8) + 175));
 		DrawNextButton();
@@ -118,6 +136,7 @@ void ofApp::draw() {
 
 	case OLD_USER:
 		ofSetColor(0);
+		title_font_.drawStringCentered("Welcome Back!", ofGetWidth() / 2, (ofGetHeight() / 8));
 		subtitle_font_.drawStringCentered("Enter your username:", ofGetWidth() / 2, ((ofGetHeight() / 8) + 85));
 		DrawNextButton();
 		update(); //get user name and load user class from json file
@@ -183,16 +202,16 @@ void ofApp::mousePressed(int x, int y, int button) {
 		curr_game_state_ = OLD_USER;
 	}
 
-	if ((curr_game_state_ = NEW_USER) && next_button_clicked_) {
+	if ((curr_game_state_ == NEW_USER) && next_button_clicked_) {
 		curr_game_state_ = ADD_HABITS;
 		next_button_clicked_ = false;
-	} else if ((curr_game_state_ = OLD_USER) && next_button_clicked_) {
+	} else if ((curr_game_state_ == OLD_USER) && next_button_clicked_) {
 		curr_game_state_ = CHECK_HABIT_DONE;
 		next_button_clicked_ = false;
-	} else if ((curr_game_state_ = ADD_HABITS) && next_button_clicked_) {
+	} else if ((curr_game_state_ == ADD_HABITS) && next_button_clicked_) {
 		curr_game_state_ = CHECK_HABIT_DONE;
 		next_button_clicked_ = false;
-	} else if ((curr_game_state_ = CHECK_HABIT_DONE) && next_button_clicked_) {
+	} else if ((curr_game_state_ == CHECK_HABIT_DONE) && next_button_clicked_) {
 		curr_game_state_ = DISPLAY_HABITS;
 		next_button_clicked_ = false;
 	} else if (next_button_.inside(x, y)) {
