@@ -19,6 +19,11 @@ void User::setUserName(std::string name) {
 
 void User::setHabitNum(int num) {
 	num_habits_ = num;
+	user_habits_.clear();
+	for (int i = 0; i < num; i++) {
+		Habit random;
+		user_habits_.push_back(random);
+	}
 }
 
 std::string User::getUserName() { //make all getters const

@@ -621,6 +621,9 @@
   <ItemGroup>
     <Font Include="bin\data\subtitle_font_.otf" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="src\DEVELOPMENT.md" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ProjectExtensions>
     <VisualStudio>

@@ -6,8 +6,8 @@ void ofApp::setup() {
 	ofSetWindowTitle("HABIT TRACKER");
 	ofBackground(255, 255, 255);
 	title_font_.load("title_font_.ttf", 72);
-	subtitle_font_.load("title_font_.ttf", 28);
-	button_font_.load("subtitle_font_.ttf", 13);
+	subtitle_font_.load("subtitle_font_.ttf", 18);
+	button_font_.load("button_font_.ttf", 13);
 	SetUpButtons();
 }
 
@@ -88,19 +88,19 @@ void ofApp::draw() {
 		break;
 	case ADD_HABITS:
 		ofSetColor(0);
-		subtitle_font_.drawStringCentered("Add habits: ", ofGetWidth() / 2, ((ofGetHeight() / 8) + 85));
+		title_font_.drawStringCentered("Add habits: ", ofGetWidth() / 2, (ofGetHeight() / 8));
 		DrawNextButton();
 		update(); //Loop thru num of habits and ask user to input habit name
 		break;
 	case CHECK_HABIT_DONE:
 		ofSetColor(0);
-		subtitle_font_.drawStringCentered("Habit Checklist: ", ofGetWidth() / 2, ((ofGetHeight() / 8) + 85));
+		title_font_.drawStringCentered("Habit Checklist: ", ofGetWidth() / 2, (ofGetHeight() / 8));
 		DrawNextButton();
 		update(); //loop thru habits and ask if each habit is done
 		break;
 	case DISPLAY_HABITS:
 		ofSetColor(0);
-		subtitle_font_.drawStringCentered("All habits", ofGetWidth() / 2, ((ofGetHeight() / 8) + 85));
+		title_font_.drawStringCentered("Habit Tracker", ofGetWidth() / 2, (ofGetHeight() / 8));
 		break;
 	}
 }
