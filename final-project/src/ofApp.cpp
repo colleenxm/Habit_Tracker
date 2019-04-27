@@ -1,7 +1,7 @@
 #include "ofApp.h"
 
 //--------------------------------------------------------------
-void ofApp::setup() {
+void HabitTracker::setup() {
 	curr_game_state_ = SHOW_INTRO; // Init this to your first state
 	ofSetWindowTitle("HABIT TRACKER");
 	ofBackground(255, 255, 255);
@@ -30,12 +30,12 @@ void ofApp::setup() {
 	input->setPosition(ofGetWidth() / 2 - input->getWidth() / 2, 240); */
 }
 
-void ofApp::onTextInputEvent(ofxDatGuiTextInputEvent e)
+void HabitTracker::onTextInputEvent(ofxDatGuiTextInputEvent e)
 {
 	font_.drawString("Field test", ofGetWidth() / 2, ((ofGetHeight() / 8) + 85));
 }
 
-void ofApp::SetUpButtons() {
+void HabitTracker::SetUpButtons() {
 	next_button_clicked_ = false;
 
 	new_user_button_message_ = "New User";
@@ -61,7 +61,7 @@ void ofApp::SetUpButtons() {
 }
 
 //--------------------------------------------------------------
-void ofApp::update() {
+void HabitTracker::update() {
 	std::vector<User::Habit> habits = current_user_.getUserHabits();
 	switch (curr_game_state_) {
 	case NEW_USER:
@@ -107,7 +107,7 @@ void ofApp::update() {
 }
 
 //--------------------------------------------------------------
-void ofApp::draw() {
+void HabitTracker::draw() {
 	switch (curr_game_state_) {
 	case SHOW_INTRO:
 		ofSetColor(0);
@@ -164,34 +164,34 @@ void ofApp::draw() {
 	}
 }
 
-void ofApp::DrawNextButton() {
+void HabitTracker::DrawNextButton() {
 	ofSetColor(next_button_color_);
 	ofDrawRectRounded(next_button_, 10);
 	ofSetColor(0);
 	button_font_.drawStringCentered(next_button_message_, ofGetWidth() / 2, 435);
 }
 //--------------------------------------------------------------
-void ofApp::keyPressed(int key) {
+void HabitTracker::keyPressed(int key) {
 
 }
 
 //--------------------------------------------------------------
-void ofApp::keyReleased(int key) {
+void HabitTracker::keyReleased(int key) {
 
 }
 
 //--------------------------------------------------------------
-void ofApp::mouseMoved(int x, int y) {
+void HabitTracker::mouseMoved(int x, int y) {
 
 }
 
 //--------------------------------------------------------------
-void ofApp::mouseDragged(int x, int y, int button) {
+void HabitTracker::mouseDragged(int x, int y, int button) {
 
 }
 
 //--------------------------------------------------------------
-void ofApp::mousePressed(int x, int y, int button) {
+void HabitTracker::mousePressed(int x, int y, int button) {
 	if (new_user_button_.inside(x, y)) {
 		//is_new_user_button_clicked_ = true;
 		curr_game_state_ = NEW_USER;
@@ -220,31 +220,31 @@ void ofApp::mousePressed(int x, int y, int button) {
 }
 
 //--------------------------------------------------------------
-void ofApp::mouseReleased(int x, int y, int button) {
+void HabitTracker::mouseReleased(int x, int y, int button) {
 
 }
 
 //--------------------------------------------------------------
-void ofApp::mouseEntered(int x, int y) {
+void HabitTracker::mouseEntered(int x, int y) {
 
 }
 
 //--------------------------------------------------------------
-void ofApp::mouseExited(int x, int y) {
+void HabitTracker::mouseExited(int x, int y) {
 
 }
 
 //--------------------------------------------------------------
-void ofApp::windowResized(int w, int h) {
+void HabitTracker::windowResized(int w, int h) {
 
 }
 
 //--------------------------------------------------------------
-void ofApp::gotMessage(ofMessage msg) {
+void HabitTracker::gotMessage(ofMessage msg) {
 
 }
 
 //--------------------------------------------------------------
-void ofApp::dragEvent(ofDragInfo dragInfo) {
+void HabitTracker::dragEvent(ofDragInfo dragInfo) {
 
 }

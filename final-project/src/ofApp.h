@@ -7,7 +7,7 @@
 #include "ofColor.h"
 #include "ofxDatGuiTextInput.h"
 
-class ofApp : public ofBaseApp {
+class HabitTracker : public ofBaseApp {
 
 public:
 
