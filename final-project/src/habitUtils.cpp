@@ -1,15 +1,7 @@
 #include "habitUtils.h"
 
 
-habitUtils::habitUtils()
-{
-}
-
-habitUtils::~habitUtils()
-{
-}
-
-std::string habitUtils::getUserName(std::string question) {
+std::string habitUtils::getUserName(const std::string& question) {
 	std::string input = "";
 	std::cout << question;
 	std::getline(std::cin, input);
@@ -20,7 +12,8 @@ std::string habitUtils::getUserName(std::string question) {
 	std::cout << "Valid file name!\n";
 	return input;
 }
-bool habitUtils::fileExists(std::string& file_name) {
+
+bool habitUtils::doesFileExists(std::string& file_name) { 
 	std::ifstream infile(file_name);
 	return infile.good();
 }
@@ -45,8 +38,7 @@ void habitUtils::trackCurrentDay(User user) {
 		//append either true or false to habit array
 		if (input == "Yes" || input == "yes" || input == "true") {
 			user.setHabitArray(curr_habit, true);
-		}
-		else {
+		} else {
 			user.setHabitArray(curr_habit, false);
 		}
 	}

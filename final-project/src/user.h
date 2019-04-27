@@ -4,7 +4,7 @@
 #include <vector> 
 class User
 {
-public:
+public: //add documentation
 	struct Habit {
 		std::string name;
 		std::vector<bool> habit_done;

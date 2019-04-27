@@ -202,9 +202,9 @@ void HabitTracker::mousePressed(int x, int y, int button) {
 		curr_game_state_ = OLD_USER;
 	}
 
-	if ((curr_game_state_ == NEW_USER) && next_button_clicked_) {
+	if ((curr_game_state_ == NEW_USER) && next_button_clicked_) { //make next button_cicked if statement and switch statement for state
 		curr_game_state_ = ADD_HABITS;
-		next_button_clicked_ = false;
+		next_button_clicked_ = false; //after switch add line
 	} else if ((curr_game_state_ == OLD_USER) && next_button_clicked_) {
 		curr_game_state_ = CHECK_HABIT_DONE;
 		next_button_clicked_ = false;

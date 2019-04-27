@@ -52,7 +52,7 @@ private:
 	bool is_old_user_button_clicked_;
 	bool next_button_clicked_;
 
-	ofColor new_user_button_color_ = ofColor(185, 224, 217, 255);
+	ofColor new_user_button_color_ = ofColor(185, 224, 217, 255); //init in ofApp.cpp & comment what color it is
 	ofColor old_user_button_color_ = ofColor(185, 224, 217, 255);
 	ofColor next_button_color_ = ofColor(185, 224, 217, 255);
 

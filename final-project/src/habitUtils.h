@@ -5,24 +5,19 @@
 #include <cstdio>
 #include <vector>  
 #include "user.h"
-class habitUtils
-{
-public:
-	/**
-	Empty constructor 
-	*/
-	habitUtils();
 
-	~habitUtils();
+class habitUtils { //make namespace, not class
+public:
+
 	/**
 	Use iostream to get the user's name
 	*/
-	std::string getUserName(std::string user_message);
+	std::string getUserName(const std::string& user_message); //pass all as const references
 
 	/**
 	See if json fie with given user name exists already
 	*/
-	bool fileExists(std::string& file_name);
+	bool doesFileExists(std::string& file_name);
 
 	/**
 	Create new json file from existing user
@@ -42,11 +37,11 @@ public:
 	/**
 	Ask if each habit was done today and update habit array
 	*/
-	void trackCurrentDay(User user);
+	void trackCurrentDay(User& user);
 
 	/**
 	Loop through and create habits
 	*/
-	void habitCreator(User user);
+	void habitCreator(User& user); //create habit
 };
 
