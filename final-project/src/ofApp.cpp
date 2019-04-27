@@ -36,6 +36,8 @@ void ofApp::onTextInputEvent(ofxDatGuiTextInputEvent e)
 }
 
 void ofApp::SetUpButtons() {
+	next_button_clicked_ = false;
+
 	new_user_button_message_ = "New User";
 	old_user_button_message_ = "Returning User";
 	next_button_message_ = "Next ->";
@@ -67,23 +69,23 @@ void ofApp::update() {
 		button_font_.drawStringCentered(current_user_.getUserName(), ofGetWidth() / 2, ((ofGetHeight() / 8) + 125));
 		button_font_.drawStringCentered(std::to_string(current_user_.getNumOfHabits()), ofGetWidth() / 2, ((ofGetHeight() / 8) + 205));
 		break;
-
-	case OLD_USER: 
+	case OLD_USER:
 		current_user_.setUserName("Colleen");
 		current_user_.setHabitNum(6);
 		break;
+		/**
+		case ADD_HABITS:
+			//loop thru habits and add them
+			break;
 
-	case ADD_HABITS:
-		//loop thru habits and add them
-		break;
+		case CHECK_HABIT_DONE:
+			//check if each ahbit was done that day
+			break;
 
-	case CHECK_HABIT_DONE: 
-		//check if each ahbit was done that day
-		break;
-
-	case DISPLAY_HABITS:
-		//pretty print each of the habits in nice graphical form
-		break;
+		case DISPLAY_HABITS:
+			//pretty print each of the habits in nice graphical form
+			break;
+		}*/
 	}
 }
 
@@ -172,37 +174,28 @@ void ofApp::mouseDragged(int x, int y, int button) {
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button) {
 	if (new_user_button_.inside(x, y)) {
-		is_new_user_button_clicked_ = true;
+		//is_new_user_button_clicked_ = true;
 		curr_game_state_ = NEW_USER;
 	}
 
 	if (old_user_button_.inside(x, y)) {
-		is_old_user_button_clicked_ = true;
+		//is_old_user_button_clicked_ = true;
 		curr_game_state_ = OLD_USER;
 	}
 
-	if (next_button_.inside(x, y)) {
-
-		if ((curr_game_state_ = NEW_USER) && next_button_clicked_) {
-			curr_game_state_ = ADD_HABITS;
-			next_button_clicked_ = false;
-		}
-
-		if ((curr_game_state_ = OLD_USER) && next_button_clicked_) {
-			curr_game_state_ = CHECK_HABIT_DONE;
-			next_button_clicked_ = false;
-		}
-
-		if ((curr_game_state_ = ADD_HABITS) && next_button_clicked_) {
-			curr_game_state_ = CHECK_HABIT_DONE;
-			next_button_clicked_ = false;
-		}
-
-		if ((curr_game_state_ = CHECK_HABIT_DONE) && next_button_clicked_) {
-			curr_game_state_ = DISPLAY_HABITS;
-			next_button_clicked_ = false;
-		}
-
+	if ((curr_game_state_ = NEW_USER) && next_button_clicked_) {
+		curr_game_state_ = ADD_HABITS;
+		next_button_clicked_ = false;
+	} else if ((curr_game_state_ = OLD_USER) && next_button_clicked_) {
+		curr_game_state_ = CHECK_HABIT_DONE;
+		next_button_clicked_ = false;
+	} else if ((curr_game_state_ = ADD_HABITS) && next_button_clicked_) {
+		curr_game_state_ = CHECK_HABIT_DONE;
+		next_button_clicked_ = false;
+	} else if ((curr_game_state_ = CHECK_HABIT_DONE) && next_button_clicked_) {
+		curr_game_state_ = DISPLAY_HABITS;
+		next_button_clicked_ = false;
+	} else if (next_button_.inside(x, y)) {
 		next_button_clicked_ = true;
 	}
 }
