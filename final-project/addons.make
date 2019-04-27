@@ -1,3 +1,4 @@
+ofxCenteredTrueTypeFont-master
 ofxGui
 ofxInputField-master
 ofxJSON-master

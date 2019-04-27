@@ -1,6 +1,9 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofxCenteredTrueTypeFont.h"
+#include "ofxGui.h"
+#include "ofxOscParameterSync.h"
 
 class ofApp : public ofBaseApp {
 
@@ -26,6 +29,7 @@ private:
 	enum GameState {
 		SHOW_INTRO = 0,
 		NEW_USER, //GET USER NAME AND CREATE FILE
+		OLD_USER, //ASK IF WANT TO ADD HABITS
 		ADD_HABITS, //ADD HABIT SCREEN 
 		CHECK_HABIT_DONE, //SHOW IF HABIT IS DONE
 		DISPLAY_HABITS, //DISPLAY ALL USER HABITS AND WHETHER HABIT IS DONE OR NOT
@@ -41,8 +45,8 @@ private:
 	bool is_new_user_button_clicked;
 	bool is_old_user_button_clicked;
 
-	ofColor new_user_button_color_ = ofColor(100, 0, 200, 100);
-	ofColor old_user_button_color_ = ofColor(0, 0, 0, 0);
+	ofColor new_user_button_color_ = ofColor(185, 224, 217, 255);
+	ofColor old_user_button_color_ = ofColor(185, 224, 217, 255);
 
 	int new_user_button_width;
 	int new_user_button_height;
@@ -51,5 +55,8 @@ private:
 	int old_user_button_height;
 
 	GameState curr_game_state_;
-	ofTrueTypeFont title_font_; //changed to ofxcentered true type font
+	ofParameter<string> name;
+	ofxCenteredTrueTypeFont title_font_; //changed to ofxcentered true type font
+	ofxCenteredTrueTypeFont subtitle_font_;
+	ofxCenteredTrueTypeFont button_font_;
 };
