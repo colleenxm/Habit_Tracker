@@ -8,8 +8,22 @@ void ofApp::setup() {
 	title_font_.load("title_font_.ttf", 72);
 	subtitle_font_.load("subtitle_font_.ttf", 18);
 	button_font_.load("button_font_.ttf", 13);
+	//font.load("ofxbraitsch/fonts/Verdana.ttf", 24);
 	SetUpButtons();
-	myInput = new ofxDatGuiTextInput("TEXT INPUT", "Type Something Here");
+	/**
+	ofSetWindowShape(1920, 1080);
+	ofSetWindowPosition(ofGetScreenWidth() / 2 - ofGetWidth() / 2, 0);
+
+	input = new ofxDatGuiTextInput("TEXT INPUT", "Type Something Here");
+	input->onTextInputEvent(this, &ofApp::onTextInputEvent);
+	input->setFocused(true);
+	input->setWidth(800, .2);
+	input->setPosition(ofGetWidth() / 2 - input->getWidth() / 2, 240); */
+}
+
+void ofApp::onTextInputEvent(ofxDatGuiTextInputEvent e)
+{
+	font.drawString("Field test", ofGetWidth() / 2, ((ofGetHeight() / 8) + 85));
 }
 
 void ofApp::SetUpButtons() {
@@ -35,6 +49,7 @@ void ofApp::SetUpButtons() {
 }
 //--------------------------------------------------------------
 void ofApp::update() {
+	//input->update();
 	switch (curr_game_state_) {
 	case NEW_USER:
 		current_user.setUserName("Colleen");
@@ -60,9 +75,13 @@ void ofApp::update() {
 
 //--------------------------------------------------------------
 void ofApp::draw() {
-	ofSetColor(0);
-	myInput->draw();
-	
+	/**
+	input->draw();
+	string str = "Text Input: " + input->getText();
+	ofRectangle bounds = font.getStringBoundingBox(str, ofGetWidth() / 2, ofGetHeight() / 2);
+	ofSetColor(ofColor::black);
+	font.drawString(str, bounds.x - bounds.width / 2, bounds.y - bounds.height / 2);
+	*/
 	switch (curr_game_state_) {
 	case SHOW_INTRO:
 		ofSetColor(0);

@@ -4,7 +4,6 @@
 #include "user.h"
 #include "ofxCenteredTrueTypeFont.h"
 #include "ofxGui.h"
-#include "ofxOscParameterSync.h"
 #include "ofxDatGuiTextInput.h"
 
 class ofApp : public ofBaseApp {
@@ -26,7 +25,6 @@ public:
 	void windowResized(int w, int h);
 	void dragEvent(ofDragInfo dragInfo);
 	void gotMessage(ofMessage msg);
-	void DrawNextButton();
 	bool bFirst;
 private:
 	enum GameState {
@@ -38,6 +36,7 @@ private:
 		DISPLAY_HABITS, //DISPLAY ALL USER HABITS AND WHETHER HABIT IS DONE OR NOT
 	};
 	void SetUpButtons();
+	void DrawNextButton();
 	
 	std::string new_user_button_message_;
 	ofRectangle new_user_button_;
@@ -66,10 +65,11 @@ private:
 	int next_button_height;
 
 	User current_user;
-	GameState curr_game_state_;
-	ofxDatGuiTextInput* myInput;
-	ofxInputField<std::string> user_name;
+	GameState curr_game_state_; 
 	ofxCenteredTrueTypeFont title_font_; //changed to ofxcentered true type font
 	ofxCenteredTrueTypeFont subtitle_font_;
 	ofxCenteredTrueTypeFont button_font_;
+	ofTrueTypeFont font;
+	ofxDatGuiTextInput* input;
+	void onTextInputEvent(ofxDatGuiTextInputEvent e);
 };
