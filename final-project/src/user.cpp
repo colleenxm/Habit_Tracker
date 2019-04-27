@@ -2,10 +2,10 @@
 //class for parsing JSON file
 
 //default constructor
-user::user() {
+User::User() {
 	user_name_ = "";
 }
-user::user(std::string name, int habit_number) {
+User::User(std::string name, int habit_number) {
 	user_name_ = name;
 	num_habits_ = habit_number;
 	for (int i = 0; i < habit_number; i++) {
@@ -13,23 +13,30 @@ user::user(std::string name, int habit_number) {
 		user_habits_.push_back(random);
 	}
 }
+void User::setUserName(std::string name) {
+	user_name_ = name;
+}
 
-std::string user::getUserName() { //make all getters const
+void User::setHabitNum(int num) {
+	num_habits_ = num;
+}
+
+std::string User::getUserName() { //make all getters const
 	return user_name_;
 }
-std::vector<user::Habit> user::getUserHabits() {
+std::vector<User::Habit> User::getUserHabits() {
 	return user_habits_;
 }
-int user::getNumOfHabits() {
+int User::getNumOfHabits() {
 	return num_habits_;
 }
-std::string user::getHabitName(Habit habit) {
+std::string User::getHabitName(Habit habit) {
 	return habit.name;
 }
-void user::setHabitArray(Habit habit, bool is_done) {
+void User::setHabitArray(Habit habit, bool is_done) {
 	habit.habit_done.push_back(is_done);
 }
 
-void user::setHabitName(Habit habit, std::string input) {
+void User::setHabitName(Habit habit, std::string input) {
 	habit.name = input;
 }

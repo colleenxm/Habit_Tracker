@@ -35,8 +35,8 @@ void habitUtils::updateJson() {
 void habitUtils::prettyPrint() {
 
 }
-void habitUtils::trackCurrentDay(user user) {
-	std::vector<user::Habit> habits = user.getUserHabits();
+void habitUtils::trackCurrentDay(User user) {
+	std::vector<User::Habit> habits = user.getUserHabits();
 
 	for (const auto& curr_habit : habits) {
 		std::string input = "";
@@ -51,8 +51,8 @@ void habitUtils::trackCurrentDay(user user) {
 		}
 	}
 }
-void habitUtils::habitCreator(user user) {
-	std::vector<user::Habit> habits = user.getUserHabits();
+void habitUtils::habitCreator(User user) {
+	std::vector<User::Habit> habits = user.getUserHabits();
 	for (const auto& curr_habit : habits) {
 		std::string input = "";
 		std::cout << "What would you like to name this habit?";

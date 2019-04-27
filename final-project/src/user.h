@@ -2,7 +2,7 @@
 #include <string>
 #include <iostream> 
 #include <vector> 
-class user
+class User
 {
 public:
 	struct Habit {
@@ -10,9 +10,9 @@ public:
 		std::vector<bool> habit_done;
 	};
 	//default constructor
-	user();
+	User();
 	//constructor with username
-	user(std::string name, int habit_number);
+	User(std::string name, int habit_number);
 
 	std::string getUserName();
 
@@ -21,6 +21,10 @@ public:
 	int getNumOfHabits();
 
 	std::string getHabitName(Habit habit);
+
+	void setUserName(std::string name); //make habits references or const refs
+
+	void setHabitNum(int num);
 
 	void setHabitArray(Habit habit, bool is_done); //make habits references or const refs
 

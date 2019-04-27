@@ -42,11 +42,11 @@ public:
 	/**
 	Ask if each habit was done today and update habit array
 	*/
-	void trackCurrentDay(user user);
+	void trackCurrentDay(User user);
 
 	/**
 	Loop through and create habits
 	*/
-	void habitCreator(user user);
+	void habitCreator(User user);
 };
 
