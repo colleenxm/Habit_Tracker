@@ -181,7 +181,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\ofApp.cpp" />
+    <ClCompile Include="src\HabitTracker.cpp" />
     <ClCompile Include="src\habitUtils.cpp" />
     <ClCompile Include="src\user.cpp" />
     <ClCompile Include="..\..\..\..\addons\ofxDatGui-master\src\core\ofxDatGuiComponent.cpp" />
@@ -203,7 +203,7 @@
     <ClCompile Include="..\..\..\..\addons\ofxVectorGraphics\libs\CreEPS.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\ofApp.h" />
+    <ClInclude Include="src\HabitTracker.h" />
     <ClInclude Include="src\habitUtils.h" />
     <ClInclude Include="src\user.h" />
     <ClInclude Include="..\..\..\..\addons\ofxCenteredTrueTypeFont-master\src\ofxCenteredTrueTypeFont.h" />

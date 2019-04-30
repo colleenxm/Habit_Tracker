@@ -36,7 +36,9 @@ private:
 		CHECK_HABIT_DONE, //SHOW IF HABIT IS DONE
 		DISPLAY_HABITS, //DISPLAY ALL USER HABITS AND WHETHER HABIT IS DONE OR NOT
 	};
+
 	void SetUpButtons();
+
 	void DrawNextButton();
 	
 	std::string new_user_button_message_;
@@ -48,30 +50,47 @@ private:
 	std::string next_button_message_;
 	ofRectangle next_button_;
 
+	std::string habit_completed_button_message_;
+	ofRectangle habit_completed_button_;
+
+	std::string habit_not_completed_button_message_;
+	ofRectangle habit_not_completed_button_;
+
 	bool is_new_user_button_clicked_;
 	bool is_old_user_button_clicked_;
 	bool next_button_clicked_;
+	bool habit_completed_;
 
 	ofColor new_user_button_color_ = ofColor(185, 224, 217, 255); //init in ofApp.cpp & comment what color it is
 	ofColor old_user_button_color_ = ofColor(185, 224, 217, 255);
 	ofColor next_button_color_ = ofColor(185, 224, 217, 255);
+	ofColor habit_completed_button_color_ = ofColor(185, 224, 217, 255);
+	ofColor habit_not_completed_button_color_ = ofColor(185, 224, 217, 255);
 
-	int new_user_button_width_;
-	int new_user_button_height_;
+	size_t new_user_button_width_;
+	size_t new_user_button_height_;
 
-	int old_user_button_width_;
-	int old_user_button_height_;
+	size_t old_user_button_width_;
+	size_t old_user_button_height_;
 
-	int next_button_width_;
-	int next_button_height_;
+	size_t next_button_width_;
+	size_t next_button_height_;
+
+	size_t habit_completed_button_width_;
+	size_t habit_completed_button_height_;
+
+	size_t habit_not_completed_button_width_;
+	size_t habit_not_completed_button_height_;
 
 	User current_user_;
 	GameState curr_game_state_; 
-	ofxCenteredTrueTypeFont title_font_; //changed to ofxcentered true type font
+
+	ofxCenteredTrueTypeFont title_font_; 
 	ofxCenteredTrueTypeFont subtitle_font_;
 	ofxCenteredTrueTypeFont button_font_;
-	ofTrueTypeFont font_;
-	ofxDatGuiTextInput* input_;
-	//ofxDatGuiTextInputField* input_field;
-	void onTextInputEvent(ofxDatGuiTextInputEvent e);
+
+	ofxGuiGroup input_text_box_;
+	ofxGuiGroup input_int_box_;
+	ofParameter<std::string> input_text_;
+	ofxIntSlider input_int_;
 };

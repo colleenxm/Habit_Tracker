@@ -5,7 +5,7 @@ std::string habitUtils::getUserName(const std::string& question) {
 	std::string input = "";
 	std::cout << question;
 	std::getline(std::cin, input);
-	while (!fileExists(input)) {
+	while (!doesFileExists(input)) {
 		std::cout << "Invalid file name! Try again.\n";
 		std::getline(std::cin, input);
 	}
@@ -28,7 +28,7 @@ void habitUtils::updateJson() {
 void habitUtils::prettyPrint() {
 
 }
-void habitUtils::trackCurrentDay(User user) {
+void habitUtils::trackCurrentDay(User& user) {
 	std::vector<User::Habit> habits = user.getUserHabits();
 
 	for (const auto& curr_habit : habits) {
@@ -43,7 +43,7 @@ void habitUtils::trackCurrentDay(User user) {
 		}
 	}
 }
-void habitUtils::habitCreator(User user) {
+void habitUtils::habitCreator(User& user) {
 	std::vector<User::Habit> habits = user.getUserHabits();
 	for (const auto& curr_habit : habits) {
 		std::string input = "";
