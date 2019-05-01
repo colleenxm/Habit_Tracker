@@ -273,7 +273,4 @@
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="bin\data\Colleen.json" />
-  </ItemGroup>
 </Project>

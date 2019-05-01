@@ -65,8 +65,9 @@ void HabitTracker::update() {
 	if (next_button_clicked_) {
 		switch (curr_game_state_) {
 		case NEW_USER:
+			current_user_.setUserName(input_text_);
+			current_user_.setHabitNum(input_int_);
 			file_name_ = current_user_.getUserName() + ".json";
-			createFile(); //should only be called once
 			curr_game_state_ = ADD_HABITS;
 			break;
 		case OLD_USER:
@@ -80,6 +81,7 @@ void HabitTracker::update() {
 			break;
 		case CHECK_HABIT_DONE:
 			curr_game_state_ = DISPLAY_HABITS;
+			updateFile();
 			break;
 		case DISPLAY_HABITS:
 			curr_game_state_ = DISPLAY_HABITS;
@@ -91,15 +93,11 @@ void HabitTracker::update() {
 	
 	switch (curr_game_state_) {
 	case NEW_USER:
-		current_user_.setUserName(input_text_);
-		current_user_.setHabitNum(input_int_);
 		break;
 	case OLD_USER:
 		break;
 	case ADD_HABITS:
 		subtitle_font_.drawStringCentered("What would you like to name this habit?", ofGetWidth() / 2, ((ofGetHeight() / 8) + 85));
-		std::cout << num << "\n";
-		std::cout << current_user_.getNumOfHabits();
 		if (num < current_user_.getNumOfHabits()) {
 			if (name_habit_clicked_) {
 				current_user_.addHabit(input_text_);
@@ -302,12 +300,25 @@ void HabitTracker::dragEvent(ofDragInfo dragInfo) {
 
 }
 
-void HabitTracker::createFile() {
-	std::ofstream outfile(file_name_);
-	outfile.close();
-}
 void HabitTracker::updateFile() {
-	ofLogNotice("HabitTracker::setup") << result_.getRawString();
+	//bool parsingSuccessful = 
+		result_.open(file_name_);
+	//if (parsingSuccessful) {
+		result_["num_habits_"] = current_user_.getNumOfHabits();
+		for (int i = 0; i < current_user_.getNumOfHabits(); i++) {
+			result_["user_habits_"][i]["name"] = current_user_.getUserHabits().at(i).name;
+		}
+		int j = 0;
+		for (User::Habit curr_habit : current_user_.getUserHabits()) {
+			for (int i = 0; i < curr_habit.habit_done.size(); i++) {
+				bool newVal = current_user_.getUserHabits().at(j).habit_done[i];
+				result_["user_habits_"][j]["habit_done"][i] = newVal;
+			}
+			j++;
+		}
+	//} else {
+		//std::cout << "Update parsing unsuccessful";
+	//}
 	result_.save(file_name_, true);
 }
 void HabitTracker::prettyPrintProgress() {

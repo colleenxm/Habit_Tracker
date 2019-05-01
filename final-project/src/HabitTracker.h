@@ -30,7 +30,6 @@ public:
 	void gotMessage(ofMessage msg);
 
 private:
-	void createFile();
 	void updateFile();
 	void loadUserFromFile();
 	void prettyPrintProgress();
