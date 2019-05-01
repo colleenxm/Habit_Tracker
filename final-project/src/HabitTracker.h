@@ -64,6 +64,8 @@ private:
 	std::string name_habit_button_message_;
 	ofRectangle name_habit_button_;
 
+	ofRectangle habit_display_;
+
 	bool is_new_user_button_clicked_;
 	bool is_old_user_button_clicked_;
 	bool next_button_clicked_;
@@ -71,13 +73,15 @@ private:
 	bool habit_not_completed;
 	bool name_habit_clicked_;
 
-	ofColor new_user_button_color_ = ofColor(185, 224, 217, 255); //init in ofApp.cpp & comment what color it is
-	ofColor old_user_button_color_ = ofColor(185, 224, 217, 255);
-	ofColor next_button_color_ = ofColor(185, 224, 217, 255);
-	ofColor habit_completed_button_color_ = ofColor(185, 224, 217, 255);
-	ofColor habit_not_completed_button_color_ = ofColor(185, 224, 217, 255);
-	ofColor name_habit_button_color_ = ofColor(185, 224, 217, 255);
-	ofColor light_up_color = ofColor(185, 224, 217, 105);
+	ofColor default = ofColor(185, 224, 217, 255);
+	ofColor new_user_button_color_ = default; //init in ofApp.cpp & comment what color it is
+	ofColor old_user_button_color_ = default;
+	ofColor next_button_color_ = default;
+	ofColor habit_completed_button_color_ = default;
+	ofColor habit_not_completed_button_color_ = default;
+	ofColor name_habit_button_color_ = default;
+	
+
 	size_t new_user_button_width_;
 	size_t new_user_button_height_;
 
@@ -114,4 +118,5 @@ private:
 	int num;
 	ofxJSONElement result_	;
 	std::string file_name_;
+	ofSoundPlayer mySound;
 };

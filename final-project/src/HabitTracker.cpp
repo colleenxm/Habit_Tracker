@@ -2,6 +2,9 @@
 
 //--------------------------------------------------------------
 void HabitTracker::setup() {
+	mySound.load("backgroundMusic.mp3");
+	mySound.play();
+
 	curr_game_state_ = SHOW_INTRO;
 	ofSetWindowTitle("HABIT TRACKER");
 	ofBackground(255, 255, 255);
@@ -315,8 +318,28 @@ void HabitTracker::prettyPrintProgress() {
 	for (int i = 0; i < current_user_.getNumOfHabits(); i++) {
 		ofSetColor(0);
 		std::string habit_name = current_user_.getUserHabits().at(i).name;
-		subtitle_font_.drawStringCentered(habit_name, ofGetWidth() / 2, ((ofGetHeight() / 8) + spacing));
+		subtitle_font_.drawStringCentered(habit_name, ofGetWidth() / 4, ((ofGetHeight() / 8) + spacing));
 		spacing += 75;
+	}
+	for (int i = 0; i < current_user_.getUserHabits()[0].habit_done.size(); i++) {
+		switch (i) {
+		case 0: ofSetColor(0);
+			break;
+		case 1: ofSetColor(0);
+			break;
+		case 2:	ofSetColor(0);
+			break;
+		case 3: ofSetColor(0);
+			break;
+		case 4: ofSetColor(0);
+			break;
+		case 5: ofSetColor(0);
+			break;
+		}
+		for (int j = 0; j < current_user_.getNumOfHabits(); j++) {
+			habit_display_.set(i + 85, j + 85 , 75, 75);
+			ofDrawRectRounded(habit_display_, 10);
+		}
 	}
 }
 
