@@ -180,6 +180,7 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="habitUtils.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\HabitTracker.cpp" />
     <ClCompile Include="src\user.cpp" />
@@ -202,6 +203,7 @@
     <ClCompile Include="..\..\..\..\addons\ofxVectorGraphics\libs\CreEPS.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="habitUtils.h" />
     <ClInclude Include="src\HabitTracker.h" />
     <ClInclude Include="src\user.h" />
     <ClInclude Include="..\..\..\..\addons\ofxCenteredTrueTypeFont-master\src\ofxCenteredTrueTypeFont.h" />
@@ -256,6 +258,9 @@
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/D_DEBUG %(AdditionalOptions)</AdditionalOptions>
       <AdditionalIncludeDirectories>$(OF_ROOT)\libs\openFrameworksCompiled\project\vs</AdditionalIncludeDirectories>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DEVELOPMENT.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ProjectExtensions>

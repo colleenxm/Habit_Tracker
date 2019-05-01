@@ -73,7 +73,7 @@ private:
 	bool habit_not_completed;
 	bool name_habit_clicked_;
 
-	ofColor default = ofColor(185, 224, 217, 255);
+	ofColor default = ofColor(255, 204, 221, 255);
 	ofColor new_user_button_color_ = default; //init in ofApp.cpp & comment what color it is
 	ofColor old_user_button_color_ = default;
 	ofColor next_button_color_ = default;
@@ -81,6 +81,12 @@ private:
 	ofColor habit_not_completed_button_color_ = default;
 	ofColor name_habit_button_color_ = default;
 	
+	ofColor red = ofColor(250, 128, 114, 255);
+	ofColor orange = ofColor(250, 181, 112, 255);
+	ofColor yellow = ofColor(250, 250, 112, 255);
+	ofColor green = ofColor(112, 250, 147, 255);
+	ofColor blue = ofColor(112, 250, 250, 255);
+	ofColor violet = ofColor(147, 112, 250, 255);
 
 	size_t new_user_button_width_;
 	size_t new_user_button_height_;
@@ -114,9 +120,12 @@ private:
 
 	std::vector<User::Habit> habits;
 	User::Habit curr_habit;
+
 	std::string question;
-	int num;
+	size_t num;
+
 	ofxJSONElement result_	;
-	std::string file_name_;
+	std::string json_file_name_;
+	std::string kBackground_music_file_name_ = "backgroundMusic.mp3";
 	ofSoundPlayer mySound;
 };

@@ -64,6 +64,9 @@
     <ClCompile Include="src\HabitTracker.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="habitUtils.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -263,8 +266,14 @@
     <ClInclude Include="src\HabitTracker.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="habitUtils.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DEVELOPMENT.md" />
   </ItemGroup>
 </Project>

@@ -2,7 +2,7 @@
 
 //--------------------------------------------------------------
 void HabitTracker::setup() {
-	mySound.load("backgroundMusic.mp3");
+	mySound.load(kBackground_music_file_name_);
 	mySound.play();
 
 	curr_game_state_ = SHOW_INTRO;
@@ -22,7 +22,6 @@ void HabitTracker::setup() {
 	input_int_box_.setPosition(300, 280);
 	SetUpButtons();
 
-	//habits = current_user_.getUserHabits();
 	num = 0;
 }
 
@@ -70,12 +69,12 @@ void HabitTracker::update() {
 		case NEW_USER:
 			current_user_.setUserName(input_text_);
 			current_user_.setHabitNum(input_int_);
-			file_name_ = current_user_.getUserName() + ".json";
+			json_file_name_ = current_user_.getUserName() + ".json";
 			curr_game_state_ = ADD_HABITS;
 			break;
 		case OLD_USER:
 			current_user_.setUserName(input_text_);
-			file_name_ = current_user_.getUserName() + ".json";
+			json_file_name_ = current_user_.getUserName() + ".json";
 			loadUserFromFile();
 			curr_game_state_ = CHECK_HABIT_DONE;
 			break;
@@ -296,7 +295,7 @@ void HabitTracker::dragEvent(ofDragInfo dragInfo) {
 }
 
 void HabitTracker::updateFile() {
-	result_.open(file_name_);
+	result_.open(json_file_name_);
 	result_["user_name_"] = current_user_.getUserName();
 	result_["num_habits_"] = current_user_.getNumOfHabits();
 	for (int i = 0; i < current_user_.getNumOfHabits(); i++) {
@@ -304,47 +303,50 @@ void HabitTracker::updateFile() {
 	}
 	int j = 0;
 	for (User::Habit current_habit_ : current_user_.getUserHabits()) {
-		Json::Value vec(Json::arrayValue);
+		//Json::Value vec(Json::arrayValue);
 		for (int i = 0; i < current_habit_.habit_done.size(); i++) {
-			vec.append(Json::Value(current_habit_.habit_done.at(i)));
+			result_["user_habits_"][j]["habit_done"] += (current_habit_.habit_done.at(i)));
 		}
-		result_["user_habits_"][j]["habit_done"].append(vec);
 		j++;
 	}
-	result_.save(file_name_);
+	result_.save(json_file_name_);
 }
 void HabitTracker::prettyPrintProgress() {
-	int spacing = 85;
+	int title_spacing_ = 85;
 	for (int i = 0; i < current_user_.getNumOfHabits(); i++) {
 		ofSetColor(0);
 		std::string habit_name = current_user_.getUserHabits().at(i).name;
-		subtitle_font_.drawStringCentered(habit_name, ofGetWidth() / 4, ((ofGetHeight() / 8) + spacing));
-		spacing += 75;
+		subtitle_font_.drawStringCentered(habit_name, ofGetWidth() / 4, ((ofGetHeight() / 8) + title_spacing_));
+		title_spacing_ += 75;
 	}
-	for (int i = 0; i < current_user_.getUserHabits()[0].habit_done.size(); i++) {
+	int y_spacing_ = 55;
+	for (int i = 0; i < current_user_.getNumOfHabits(); i++) {
+		int x_spacing_ = 55;
 		switch (i) {
-		case 0: ofSetColor(0);
+		case 0: ofSetColor(red);
 			break;
-		case 1: ofSetColor(0);
+		case 1: ofSetColor(orange);
 			break;
-		case 2:	ofSetColor(0);
+		case 2:	ofSetColor(yellow);
 			break;
-		case 3: ofSetColor(0);
+		case 3: ofSetColor(green);
 			break;
-		case 4: ofSetColor(0);
+		case 4: ofSetColor(blue);
 			break;
-		case 5: ofSetColor(0);
+		case 5: ofSetColor(violet);
 			break;
 		}
-		for (int j = 0; j < current_user_.getNumOfHabits(); j++) {
-			habit_display_.set(i + 85, j + 85 , 75, 75);
+		for (int j = 0; j < current_user_.getUserHabits()[0].habit_done.size(); j++) {
+			x_spacing_ += 85;
+			habit_display_.set(ofGetWidth() / 4 + x_spacing_, (ofGetHeight() / 8) + y_spacing_, 55, 55);
 			ofDrawRectRounded(habit_display_, 10);
 		}
+		y_spacing_ += 75;
 	}
 }
 
 void HabitTracker::loadUserFromFile() {
-	bool parsingSuccessful = result_.open(file_name_);
+	bool parsingSuccessful = result_.open(json_file_name_);
 	if (parsingSuccessful) {
 		current_user_.setHabitNum(result_["num_habits_"].asInt());
 		for (int i = 0; i < current_user_.getNumOfHabits(); i++) {
