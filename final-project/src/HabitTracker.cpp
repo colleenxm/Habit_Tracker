@@ -70,6 +70,7 @@ void HabitTracker::update() {
 			curr_game_state_ = ADD_HABITS;
 			break;
 		case OLD_USER:
+			current_user_.setUserName(input_text_);
 			file_name_ = current_user_.getUserName();
 			loadUserFromFile();
 			curr_game_state_ = CHECK_HABIT_DONE;
@@ -92,11 +93,8 @@ void HabitTracker::update() {
 	case NEW_USER:
 		current_user_.setUserName(input_text_);
 		current_user_.setHabitNum(input_int_);
-		createFile();
 		break;
 	case OLD_USER:
-		current_user_.setUserName(input_text_);
-		//load user from json file
 		break;
 	case ADD_HABITS:
 		subtitle_font_.drawStringCentered("What would you like to name this habit?", ofGetWidth() / 2, ((ofGetHeight() / 8) + 85));
@@ -317,11 +315,23 @@ void HabitTracker::prettyPrintProgress() {
 }
 
 void HabitTracker::loadUserFromFile() {
-	result_.open("Colleen.json");
-	ofLogNotice("ofApp::setup") << result_.getRawString();
-	current_user_.setHabitNum(result_["num_habits_"].asInt());
-	current_user_.setUserName(result_["user_name_"].asString());
-	for (int i = 0; i < current_user_.getNumOfHabits(); i++) {
-
+	file_name_ = "Colleen.json";
+	bool parsingSuccessful = result_.open(file_name_);
+	if (parsingSuccessful) {
+		ofLogNotice("ofApp::setup") << result_.getRawString();
+		current_user_.setHabitNum(result_["num_habits_"].asInt());
+		for (int i = 0; i < current_user_.getNumOfHabits(); i++) {
+			current_user_.addHabit(result_["user_habits_"][i]["name"].asString());
+		}
+		int j = 0;
+		for (User::Habit curr_habit : current_user_.getUserHabits()) {
+			for (int i = 0; i < curr_habit.habit_done.size(); i++) {
+				current_user_.setHabitArray(curr_habit, result_["user_habits_"][j]["habit_done"][i].asBool());
+			}
+			j++;
+		}
+	} else {
+		std::cout << "Parsing unsuccessful.";
 	}
+	
 }
