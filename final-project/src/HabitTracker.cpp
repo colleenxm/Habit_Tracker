@@ -113,6 +113,7 @@ void HabitTracker::update() {
 		}
 		break;
 	case CHECK_HABIT_DONE:
+		if (num < current_user_.getNumOfHabits()) {
 			curr_habit = current_user_.getUserHabits().at(num);
 			question = "Did you complete " + curr_habit.name + " today?";
 			subtitle_font_.drawStringCentered(question, ofGetWidth() / 2, ((ofGetHeight() / 8) + 85));
@@ -121,12 +122,16 @@ void HabitTracker::update() {
 				num++;
 				habit_completed_ = false;
 				habit_not_completed = false;
-			} else if (habit_not_completed){
+			}
+			else if (habit_not_completed) {
 				current_user_.setHabitArray(curr_habit, false);
 				num++;
 				habit_completed_ = false;
 				habit_not_completed = false;
 			}
+		} else {
+			subtitle_font_.drawStringCentered("All habits checked. Click next to continue.", ofGetWidth() / 2, ((ofGetHeight() / 8) + 85));
+		}
 		break;
 	case DISPLAY_HABITS:
 		for (const auto& curr_habit : habits) {
