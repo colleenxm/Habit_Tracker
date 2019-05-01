@@ -71,7 +71,7 @@ void HabitTracker::update() {
 			break;
 		case OLD_USER:
 			current_user_.setUserName(input_text_);
-			file_name_ = current_user_.getUserName();
+			file_name_ = current_user_.getUserName() + ".json";
 			loadUserFromFile();
 			curr_game_state_ = CHECK_HABIT_DONE;
 			break;
@@ -117,7 +117,7 @@ void HabitTracker::update() {
 	case CHECK_HABIT_DONE:
 		if (num < current_user_.getNumOfHabits()) {
 			curr_habit = current_user_.getUserHabits().at(num);
-			question = "Did you complete " + curr_habit.name + " today?";
+			question = "Did you " + curr_habit.name + " today?";
 			subtitle_font_.drawStringCentered(question, ofGetWidth() / 2, ((ofGetHeight() / 8) + 85));
 			if (habit_completed_) {
 				current_user_.setHabitArray(curr_habit, true);
@@ -315,7 +315,7 @@ void HabitTracker::prettyPrintProgress() {
 }
 
 void HabitTracker::loadUserFromFile() {
-	file_name_ = "Colleen.json";
+	//file_name_ = "Colleen.json";
 	bool parsingSuccessful = result_.open(file_name_);
 	if (parsingSuccessful) {
 		ofLogNotice("ofApp::setup") << result_.getRawString();
