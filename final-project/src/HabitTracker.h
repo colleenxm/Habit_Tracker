@@ -124,7 +124,7 @@ private:
 	std::string question;
 	size_t num;
 
-	ofxJSONElement result_	;
+	ofxJSONElement result_;
 	std::string json_file_name_;
 	std::string kBackground_music_file_name_ = "backgroundMusic.mp3";
 	ofSoundPlayer mySound;

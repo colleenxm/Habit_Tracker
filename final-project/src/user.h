@@ -33,6 +33,7 @@ public: //add documentation
 	void addHabit(std::string habit_name);
 
 	std::vector<bool> getHabitDone(Habit habit);
+
 private:
 	std::string user_name_;
 	int num_habits_;
