@@ -18,6 +18,9 @@ void HabitTracker::setup() {
 	input_int_box_.add(input_int_.setup("number of habits: ", 3, 1, 5));
 	input_int_box_.setPosition(300, 280);
 	SetUpButtons();
+
+	habits = current_user_.getUserHabits();
+	num = 0;
 }
 
 void HabitTracker::SetUpButtons() {
@@ -68,9 +71,11 @@ void HabitTracker::update() {
 			curr_game_state_ = CHECK_HABIT_DONE;
 			break;
 		case ADD_HABITS:
+			num = 0;
 			curr_game_state_ = CHECK_HABIT_DONE;
 			break;
 		case CHECK_HABIT_DONE:
+			num = 0;
 			curr_game_state_ = DISPLAY_HABITS;
 			break;
 		case DISPLAY_HABITS:
@@ -79,7 +84,7 @@ void HabitTracker::update() {
 		}
 		next_button_clicked_ = false;
 	}
-	std::vector<User::Habit> habits = current_user_.getUserHabits();
+	
 	switch (curr_game_state_) {
 	case NEW_USER:
 		current_user_.setUserName(input_text_);
@@ -91,28 +96,38 @@ void HabitTracker::update() {
 		break;
 	case ADD_HABITS:
 		subtitle_font_.drawStringCentered("What would you like to name this habit?", ofGetWidth() / 2, ((ofGetHeight() / 8) + 85));
-		if (name_habit_clicked_) {
-			current_user_.addHabit(input_text_);
-			std::string to_print = current_user_.getUserHabits().back().name;
-			name_habit_clicked_ = false;
+		std::cout << num << "\n";
+		std::cout << current_user_.getNumOfHabits();
+		if (num < current_user_.getNumOfHabits()) {
+			if (name_habit_clicked_) {
+				current_user_.addHabit(input_text_);
+				std::string to_print = current_user_.getUserHabits().back().name;
+				num++;
+				name_habit_clicked_ = false;
+			}
+			else {
+				subtitle_font_.drawStringCentered("Click 'Name habit' when ready.", ofGetWidth() / 2, ((ofGetHeight() / 8) + 175));
+			}
 		} else {
-			subtitle_font_.drawStringCentered("Click 'Name habit' when ready.", ofGetWidth() / 2, ((ofGetHeight() / 8) + 175));
+			subtitle_font_.drawStringCentered("All habits added. Click next to continue.", ofGetWidth() / 2, ((ofGetHeight() / 8) + 175));
 		}
 		break;
 	case CHECK_HABIT_DONE:
-		//fix so it waits for you to say gabit compelted before it moves on
-		for (const auto& curr_habit : habits) {
-			habit_completed_ = false;
-			std::string question = "Did you complete " + current_user_.getHabitName(curr_habit) + " today?";
+			curr_habit = current_user_.getUserHabits().at(num);
+			question = "Did you complete " + curr_habit.name + " today?";
 			subtitle_font_.drawStringCentered(question, ofGetWidth() / 2, ((ofGetHeight() / 8) + 85));
-			if (habit_completed_) { 
+			if (habit_completed_) {
 				current_user_.setHabitArray(curr_habit, true);
-			} else {
+				num++;
+				habit_completed_ = false;
+				habit_not_completed = false;
+			} else if (habit_not_completed){
 				current_user_.setHabitArray(curr_habit, false);
+				num++;
+				habit_completed_ = false;
+				habit_not_completed = false;
 			}
-		}
 		break;
-
 	case DISPLAY_HABITS:
 		for (const auto& curr_habit : habits) {
 			//subtitle_font_.drawStringCentered(, ofGetWidth() / 2, ((ofGetHeight() / 8) + 125));

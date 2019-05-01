@@ -105,4 +105,9 @@ private:
 	ofxGuiGroup input_int_box_;
 	ofParameter<std::string> input_text_;
 	ofxIntSlider input_int_;
+
+	std::vector<User::Habit> habits;
+	User::Habit curr_habit;
+	std::string question;
+	int num;
 };
