@@ -12,7 +12,9 @@ User::User(std::string name, int habit_number) {
 void User::setUserName(std::string name) {
 	user_name_ = name;
 }
-
+void User::checkHabit(int habit_num, bool done) {
+	user_habits_[habit_num].habit_done.push_back(done);
+}
 void User::setHabitNum(int num) {
 	num_habits_ = num;
 }
@@ -29,14 +31,17 @@ int User::getNumOfHabits() {
 std::string User::getHabitName(Habit habit) {
 	return habit.name;
 }
-void User::setHabitArray(Habit habit, bool is_done) {
-	habit.habit_done.push_back(is_done);
-}
+
 void User::setHabitName(Habit habit, std::string input) {
 	habit.name = input;
 }
 void User::addHabit(std::string habit_name) {
 	Habit to_add_;
 	to_add_.name = habit_name;
+	to_add_.habit_done = {};
 	user_habits_.push_back(to_add_);
+}
+
+std::vector<bool> User::getHabitDone(Habit habit) {
+	return habit.habit_done;
 }

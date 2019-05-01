@@ -25,12 +25,14 @@ public: //add documentation
 	void setUserName(std::string name); //make habits references or const refs
 
 	void setHabitNum(int num);
-
-	void setHabitArray(Habit habit, bool is_done); //make habits references or const refs
-
+ //make habits references or const refs
+	void checkHabit(int habit_num, bool done);
+		
 	void setHabitName(Habit habit, std::string input);
 
 	void addHabit(std::string habit_name);
+
+	std::vector<bool> getHabitDone(Habit habit);
 private:
 	std::string user_name_;
 	int num_habits_;

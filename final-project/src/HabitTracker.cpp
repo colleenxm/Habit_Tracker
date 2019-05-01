@@ -19,7 +19,7 @@ void HabitTracker::setup() {
 	input_int_box_.setPosition(300, 280);
 	SetUpButtons();
 
-	habits = current_user_.getUserHabits();
+	//habits = current_user_.getUserHabits();
 	num = 0;
 }
 
@@ -101,7 +101,6 @@ void HabitTracker::update() {
 		if (num < current_user_.getNumOfHabits()) {
 			if (name_habit_clicked_) {
 				current_user_.addHabit(input_text_);
-				std::string to_print = current_user_.getUserHabits().back().name;
 				num++;
 				name_habit_clicked_ = false;
 			}
@@ -118,23 +117,19 @@ void HabitTracker::update() {
 			question = "Did you " + curr_habit.name + " today?";
 			subtitle_font_.drawStringCentered(question, ofGetWidth() / 2, ((ofGetHeight() / 8) + 85));
 			if (habit_completed_) {
-				current_user_.setHabitArray(curr_habit, true);
+				current_user_.checkHabit(num, true);
 				num++;
-				habit_completed_ = false;
-				habit_not_completed = false;
-			}
-			else if (habit_not_completed) {
-				current_user_.setHabitArray(curr_habit, false);
+			} else if (habit_not_completed) {
+				current_user_.checkHabit(num, false);
 				num++;
-				habit_completed_ = false;
-				habit_not_completed = false;
 			}
+			habit_completed_ = false;
+			habit_not_completed = false;
 		} else {
 			subtitle_font_.drawStringCentered("All habits checked. Click next to continue.", ofGetWidth() / 2, ((ofGetHeight() / 8) + 85));
 		}
 		break;
 	case DISPLAY_HABITS:
-		updateFile();
 		break;
 	}
 }
@@ -248,7 +243,6 @@ void HabitTracker::mousePressed(int x, int y, int button) {
 	if (curr_game_state_ == SHOW_INTRO) {
 		if (new_user_button_.inside(x, y)) {
 			curr_game_state_ = NEW_USER;
-			subtitle_font_.drawStringCentered("Good job!", ofGetWidth() / 2, ((ofGetHeight() / 8) + 85));
 		} else if (old_user_button_.inside(x, y)) {
 			curr_game_state_ = OLD_USER;
 		}
@@ -259,10 +253,8 @@ void HabitTracker::mousePressed(int x, int y, int button) {
 	if (curr_game_state_ == CHECK_HABIT_DONE) {
 		if (habit_completed_button_.inside(x, y)) {
 			habit_completed_ = true;
-			subtitle_font_.drawStringCentered("Good job!", ofGetWidth() / 2, ((ofGetHeight() / 8) + 85));
 		} else if (habit_not_completed_button_.inside(x, y)) {
 			habit_not_completed = true;
-			subtitle_font_.drawStringCentered("Do better next time!", ofGetWidth() / 2, ((ofGetHeight() / 8) + 85));
 		}
 	}
 	if (next_button_.inside(x, y)) {
@@ -301,25 +293,22 @@ void HabitTracker::dragEvent(ofDragInfo dragInfo) {
 }
 
 void HabitTracker::updateFile() {
-	//bool parsingSuccessful = 
-		result_.open(file_name_);
-	//if (parsingSuccessful) {
-		result_["num_habits_"] = current_user_.getNumOfHabits();
-		for (int i = 0; i < current_user_.getNumOfHabits(); i++) {
-			result_["user_habits_"][i]["name"] = current_user_.getUserHabits().at(i).name;
+	result_.open(file_name_);
+	result_["user_name_"] = current_user_.getUserName();
+	result_["num_habits_"] = current_user_.getNumOfHabits();
+	for (int i = 0; i < current_user_.getNumOfHabits(); i++) {
+		result_["user_habits_"][i]["name"] = current_user_.getUserHabits().at(i).name;
+	}
+	int j = 0;
+	for (User::Habit current_habit_ : current_user_.getUserHabits()) {
+		Json::Value vec(Json::arrayValue);
+		for (int i = 0; i < current_habit_.habit_done.size(); i++) {
+			vec.append(Json::Value(current_habit_.habit_done.at(i)));
 		}
-		int j = 0;
-		for (User::Habit curr_habit : current_user_.getUserHabits()) {
-			for (int i = 0; i < curr_habit.habit_done.size(); i++) {
-				bool newVal = current_user_.getUserHabits().at(j).habit_done[i];
-				result_["user_habits_"][j]["habit_done"][i] = newVal;
-			}
-			j++;
-		}
-	//} else {
-		//std::cout << "Update parsing unsuccessful";
-	//}
-	result_.save(file_name_, true);
+		result_["user_habits_"][j]["habit_done"] = vec;
+		j++;
+	}
+	result_.save(file_name_);
 }
 void HabitTracker::prettyPrintProgress() {
 	int spacing = 85;
@@ -339,9 +328,9 @@ void HabitTracker::loadUserFromFile() {
 			current_user_.addHabit(result_["user_habits_"][i]["name"].asString());
 		}
 		int j = 0;
-		for (User::Habit curr_habit : current_user_.getUserHabits()) {
-			for (int i = 0; i < curr_habit.habit_done.size(); i++) {
-				current_user_.setHabitArray(curr_habit, result_["user_habits_"][j]["habit_done"][i].asBool());
+		for (User::Habit old_current_habit : current_user_.getUserHabits()) {
+			for (int i = 0; i < old_current_habit.habit_done.size(); i++) {
+				old_current_habit.habit_done[i] = result_["user_habits_"][j]["habit_done"][i].asBool();
 			}
 			j++;
 		}
