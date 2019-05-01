@@ -65,23 +65,26 @@ void HabitTracker::update() {
 	if (next_button_clicked_) {
 		switch (curr_game_state_) {
 		case NEW_USER:
+			file_name_ = current_user_.getUserName();
+			createFile(); //should only be called once
 			curr_game_state_ = ADD_HABITS;
 			break;
 		case OLD_USER:
+			file_name_ = current_user_.getUserName();
+			loadUserFromFile();
 			curr_game_state_ = CHECK_HABIT_DONE;
 			break;
 		case ADD_HABITS:
-			num = 0;
 			curr_game_state_ = CHECK_HABIT_DONE;
 			break;
 		case CHECK_HABIT_DONE:
-			num = 0;
 			curr_game_state_ = DISPLAY_HABITS;
 			break;
 		case DISPLAY_HABITS:
 			curr_game_state_ = DISPLAY_HABITS;
 			break;
 		}
+		num = 0;
 		next_button_clicked_ = false;
 	}
 	
@@ -89,6 +92,7 @@ void HabitTracker::update() {
 	case NEW_USER:
 		current_user_.setUserName(input_text_);
 		current_user_.setHabitNum(input_int_);
+		createFile();
 		break;
 	case OLD_USER:
 		current_user_.setUserName(input_text_);
@@ -134,9 +138,10 @@ void HabitTracker::update() {
 		}
 		break;
 	case DISPLAY_HABITS:
-		for (const auto& curr_habit : habits) {
+		if (num < current_user_.getNumOfHabits()) {
 			//subtitle_font_.drawStringCentered(, ofGetWidth() / 2, ((ofGetHeight() / 8) + 125));
 		}
+		//save to json file name -
 		break;
 	}
 }
@@ -271,38 +276,6 @@ void HabitTracker::mousePressed(int x, int y, int button) {
 	}
 }
 
-void HabitTracker::createFile(std::string file_name) {
-	//source: https://www.geeksforgeeks.org/c-program-to-create-a-file/
-
-
-	// fstream is Stream class to both 
-	// read and write from/to files. 
-	// file is object of fstream class 
-	fstream file;
-
-	// opening file "file_name.json" 
-	// in out(write) mode 
-	// ios::out Open for output operations. 
-	file.open(file_name + ".json", ios::out);
-
-	// If no file is created, then 
-	// show the error message. 
-	if (!file)
-	{
-		cout << "Error in creating file!!!";
-		return;
-	}
-
-	cout << "File created successfully.";
-
-	// closing the file. 
-	// The reason you need to call close() 
-	// at the end of the loop is that trying 
-	// to open a new file without closing the 
-	// first file will fail. 
-	file.close();
-}
-
 //--------------------------------------------------------------
 void HabitTracker::mouseReleased(int x, int y, int button) {
 
@@ -331,4 +304,24 @@ void HabitTracker::gotMessage(ofMessage msg) {
 //--------------------------------------------------------------
 void HabitTracker::dragEvent(ofDragInfo dragInfo) {
 
+}
+
+void HabitTracker::createFile() {
+	
+}
+void HabitTracker::updateFile() {
+
+}
+void HabitTracker::prettyPrintProgress() {
+
+}
+
+void HabitTracker::loadUserFromFile() {
+	result_.open("Colleen.json");
+	ofLogNotice("ofApp::setup") << result_.getRawString();
+	current_user_.setHabitNum(result_["num_habits_"].asInt());
+	current_user_.setUserName(result_["user_name_"].asString());
+	for (int i = 0; i < current_user_.getNumOfHabits(); i++) {
+
+	}
 }

@@ -10,9 +10,6 @@
     <ClCompile Include="src\main.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\ofApp.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\user.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -146,9 +143,6 @@
     <ClInclude Include="src\habitUtils.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\ofApp.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="src\user.h">
       <Filter>src</Filter>
     </ClInclude>
@@ -278,5 +272,8 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\data\Colleen.json" />
   </ItemGroup>
 </Project>

@@ -4,6 +4,7 @@
 #include "user.h"
 #include "ofxCenteredTrueTypeFont.h"
 #include "ofxGui.h"
+#include "ofxJSON.h"
 #include "ofColor.h"
 #include "ofxDatGuiTextInput.h"
 
@@ -29,8 +30,10 @@ public:
 	void gotMessage(ofMessage msg);
 
 private:
-	void createFile(std::string file_name);
-
+	void createFile();
+	void updateFile();
+	void loadUserFromFile();
+	void prettyPrintProgress();
 	enum GameState {
 		SHOW_INTRO = 0,
 		NEW_USER, //GET USER NAME AND CREATE FILE
@@ -39,7 +42,7 @@ private:
 		CHECK_HABIT_DONE, //SHOW IF HABIT IS DONE
 		DISPLAY_HABITS, //DISPLAY ALL USER HABITS AND WHETHER HABIT IS DONE OR NOT
 	};
-	
+
 	void SetUpButtons();
 
 	void DrawNextButton();
@@ -110,4 +113,6 @@ private:
 	User::Habit curr_habit;
 	std::string question;
 	int num;
+	ofxJSONElement result_	;
+	std::string file_name_;
 };
