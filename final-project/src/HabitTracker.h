@@ -7,6 +7,7 @@
 #include "ofColor.h"
 #include "ofxDatGuiTextInput.h"
 
+
 class HabitTracker : public ofBaseApp {
 
 public:
@@ -28,6 +29,8 @@ public:
 	void gotMessage(ofMessage msg);
 
 private:
+	void createFile(std::string file_name);
+
 	enum GameState {
 		SHOW_INTRO = 0,
 		NEW_USER, //GET USER NAME AND CREATE FILE
@@ -36,7 +39,7 @@ private:
 		CHECK_HABIT_DONE, //SHOW IF HABIT IS DONE
 		DISPLAY_HABITS, //DISPLAY ALL USER HABITS AND WHETHER HABIT IS DONE OR NOT
 	};
-
+	
 	void SetUpButtons();
 
 	void DrawNextButton();
@@ -56,17 +59,23 @@ private:
 	std::string habit_not_completed_button_message_;
 	ofRectangle habit_not_completed_button_;
 
+	std::string name_habit_button_message_;
+	ofRectangle name_habit_button_;
+
 	bool is_new_user_button_clicked_;
 	bool is_old_user_button_clicked_;
 	bool next_button_clicked_;
 	bool habit_completed_;
+	bool habit_not_completed;
+	bool name_habit_clicked_;
 
 	ofColor new_user_button_color_ = ofColor(185, 224, 217, 255); //init in ofApp.cpp & comment what color it is
 	ofColor old_user_button_color_ = ofColor(185, 224, 217, 255);
 	ofColor next_button_color_ = ofColor(185, 224, 217, 255);
 	ofColor habit_completed_button_color_ = ofColor(185, 224, 217, 255);
 	ofColor habit_not_completed_button_color_ = ofColor(185, 224, 217, 255);
-
+	ofColor name_habit_button_color_ = ofColor(185, 224, 217, 255);
+	ofColor light_up_color = ofColor(185, 224, 217, 105);
 	size_t new_user_button_width_;
 	size_t new_user_button_height_;
 
@@ -81,6 +90,9 @@ private:
 
 	size_t habit_not_completed_button_width_;
 	size_t habit_not_completed_button_height_;
+
+	size_t name_habit_button_width_;
+	size_t name_habit_button_height_;
 
 	User current_user_;
 	GameState curr_game_state_; 

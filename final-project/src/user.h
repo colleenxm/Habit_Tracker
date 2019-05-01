@@ -30,6 +30,7 @@ public: //add documentation
 
 	void setHabitName(Habit habit, std::string input);
 
+	void addHabit(std::string habit_name);
 private:
 	std::string user_name_;
 	int num_habits_;

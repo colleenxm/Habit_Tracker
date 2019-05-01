@@ -49,6 +49,12 @@ void HabitTracker::SetUpButtons() {
 	habit_not_completed_button_width_ = 200;
 	habit_not_completed_button_height_ = 100;
 	habit_not_completed_button_.set((ofGetWidth() / 2 - (new_user_button_width_ / 2)), 310, habit_not_completed_button_width_, habit_not_completed_button_height_);
+
+	name_habit_button_message_ = "Name this habit";
+	name_habit_button_width_ = 200;
+	name_habit_button_height_ = 100;
+	name_habit_clicked_ = false;
+	name_habit_button_.set((ofGetWidth() / 2 - (new_user_button_width_ / 2)), 310, name_habit_button_width_, name_habit_button_height_);
 }
 
 //--------------------------------------------------------------
@@ -84,12 +90,17 @@ void HabitTracker::update() {
 		//load user from json file
 		break;
 	case ADD_HABITS:
-		for (const auto& curr_habit : habits) {
-			subtitle_font_.drawStringCentered("What would you like to name this habit?", ofGetWidth() / 2, ((ofGetHeight() / 8) + 85));
-			current_user_.setHabitName(curr_habit, input_text_);
+		subtitle_font_.drawStringCentered("What would you like to name this habit?", ofGetWidth() / 2, ((ofGetHeight() / 8) + 85));
+		if (name_habit_clicked_) {
+			current_user_.addHabit(input_text_);
+			std::string to_print = current_user_.getUserHabits().back().name;
+			name_habit_clicked_ = false;
+		} else {
+			subtitle_font_.drawStringCentered("Click 'Name habit' when ready.", ofGetWidth() / 2, ((ofGetHeight() / 8) + 175));
 		}
 		break;
 	case CHECK_HABIT_DONE:
+		//fix so it waits for you to say gabit compelted before it moves on
 		for (const auto& curr_habit : habits) {
 			habit_completed_ = false;
 			std::string question = "Did you complete " + current_user_.getHabitName(curr_habit) + " today?";
@@ -131,7 +142,7 @@ void HabitTracker::draw() {
 
 	case NEW_USER:
 		ofSetColor(0);
-		title_font_.drawStringCentered("Welcome!", ofGetWidth() / 2, (ofGetHeight() / 8));
+		title_font_.drawStringCentered("Welcome " + current_user_.getUserName(), ofGetWidth() / 2, (ofGetHeight() / 8));
 		subtitle_font_.drawStringCentered("What is your name?", ofGetWidth() / 2, ((ofGetHeight() / 8) + 85));
 		input_text_box_.draw();
 		subtitle_font_.drawStringCentered("How many habits would you like to track?", ofGetWidth() / 2, ((ofGetHeight() / 8) + 175));
@@ -153,6 +164,10 @@ void HabitTracker::draw() {
 		ofSetColor(0);
 		title_font_.drawStringCentered("Add habits: ", ofGetWidth() / 2, (ofGetHeight() / 8));
 		input_text_box_.draw();
+		ofSetColor(name_habit_button_color_);
+		ofDrawRectRounded(name_habit_button_, 10);
+		ofSetColor(0);
+		button_font_.drawStringCentered(name_habit_button_message_, ofGetWidth() / 2, 325);
 		DrawNextButton();
 		update(); //Loop thru num of habits and ask user to input habit name
 		break;
@@ -214,21 +229,58 @@ void HabitTracker::mousePressed(int x, int y, int button) {
 	if (curr_game_state_ == SHOW_INTRO) {
 		if (new_user_button_.inside(x, y)) {
 			curr_game_state_ = NEW_USER;
+			subtitle_font_.drawStringCentered("Good job!", ofGetWidth() / 2, ((ofGetHeight() / 8) + 85));
 		} else if (old_user_button_.inside(x, y)) {
 			curr_game_state_ = OLD_USER;
 		}
+	}
+	if (curr_game_state_ == ADD_HABITS && name_habit_button_.inside(x, y)) {
+		name_habit_clicked_ = true;
 	}
 	if (curr_game_state_ == CHECK_HABIT_DONE) {
 		if (habit_completed_button_.inside(x, y)) {
 			habit_completed_ = true;
 			subtitle_font_.drawStringCentered("Good job!", ofGetWidth() / 2, ((ofGetHeight() / 8) + 85));
-		} else {
+		} else if (habit_not_completed_button_.inside(x, y)) {
+			habit_not_completed = true;
 			subtitle_font_.drawStringCentered("Do better next time!", ofGetWidth() / 2, ((ofGetHeight() / 8) + 85));
 		}
 	}
 	if (next_button_.inside(x, y)) {
 		next_button_clicked_ = true;
 	}
+}
+
+void HabitTracker::createFile(std::string file_name) {
+	//source: https://www.geeksforgeeks.org/c-program-to-create-a-file/
+
+
+	// fstream is Stream class to both 
+	// read and write from/to files. 
+	// file is object of fstream class 
+	fstream file;
+
+	// opening file "file_name.json" 
+	// in out(write) mode 
+	// ios::out Open for output operations. 
+	file.open(file_name + ".json", ios::out);
+
+	// If no file is created, then 
+	// show the error message. 
+	if (!file)
+	{
+		cout << "Error in creating file!!!";
+		return;
+	}
+
+	cout << "File created successfully.";
+
+	// closing the file. 
+	// The reason you need to call close() 
+	// at the end of the loop is that trying 
+	// to open a new file without closing the 
+	// first file will fail. 
+	file.close();
 }
 
 //--------------------------------------------------------------
