@@ -305,7 +305,7 @@ void HabitTracker::updateFile() {
 		for (int i = 0; i < current_habit_.habit_done.size(); i++) {
 			vec.append(Json::Value(current_habit_.habit_done.at(i)));
 		}
-		result_["user_habits_"][j]["habit_done"] = vec;
+		result_["user_habits_"][j]["habit_done"].append(vec);
 		j++;
 	}
 	result_.save(file_name_);
