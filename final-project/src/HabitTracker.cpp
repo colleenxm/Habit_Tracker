@@ -65,7 +65,7 @@ void HabitTracker::update() {
 	if (next_button_clicked_) {
 		switch (curr_game_state_) {
 		case NEW_USER:
-			file_name_ = current_user_.getUserName();
+			file_name_ = current_user_.getUserName() + ".json";
 			createFile(); //should only be called once
 			curr_game_state_ = ADD_HABITS;
 			break;
@@ -303,7 +303,8 @@ void HabitTracker::dragEvent(ofDragInfo dragInfo) {
 }
 
 void HabitTracker::createFile() {
-	
+	std::ofstream outfile(file_name_);
+	outfile.close();
 }
 void HabitTracker::updateFile() {
 	ofLogNotice("HabitTracker::setup") << result_.getRawString();
