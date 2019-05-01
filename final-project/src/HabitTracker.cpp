@@ -136,10 +136,7 @@ void HabitTracker::update() {
 		}
 		break;
 	case DISPLAY_HABITS:
-		if (num < current_user_.getNumOfHabits()) {
-			//subtitle_font_.drawStringCentered(, ofGetWidth() / 2, ((ofGetHeight() / 8) + 125));
-		}
-		//save to json file name -
+		updateFile();
 		break;
 	}
 }
@@ -216,6 +213,7 @@ void HabitTracker::draw() {
 	case DISPLAY_HABITS:
 		ofSetColor(0);
 		title_font_.drawStringCentered("Habit Tracker", ofGetWidth() / 2, (ofGetHeight() / 8));
+		prettyPrintProgress();
 		break;
 
 	}
@@ -308,17 +306,22 @@ void HabitTracker::createFile() {
 	
 }
 void HabitTracker::updateFile() {
-
+	ofLogNotice("HabitTracker::setup") << result_.getRawString();
+	result_.save(file_name_, true);
 }
 void HabitTracker::prettyPrintProgress() {
-
+	int spacing = 85;
+	for (int i = 0; i < current_user_.getNumOfHabits(); i++) {
+		ofSetColor(0);
+		std::string habit_name = current_user_.getUserHabits().at(i).name;
+		subtitle_font_.drawStringCentered(habit_name, ofGetWidth() / 2, ((ofGetHeight() / 8) + spacing));
+		spacing += 75;
+	}
 }
 
 void HabitTracker::loadUserFromFile() {
-	//file_name_ = "Colleen.json";
 	bool parsingSuccessful = result_.open(file_name_);
 	if (parsingSuccessful) {
-		ofLogNotice("ofApp::setup") << result_.getRawString();
 		current_user_.setHabitNum(result_["num_habits_"].asInt());
 		for (int i = 0; i < current_user_.getNumOfHabits(); i++) {
 			current_user_.addHabit(result_["user_habits_"][i]["name"].asString());
