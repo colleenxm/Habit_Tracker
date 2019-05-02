@@ -25,6 +25,7 @@ I used  Google C++ Style Guide (https://google.github.io/styleguide/cppguide.htm
 
 ## Demo
 
+![demo](https://user-images.githubusercontent.com/42981164/57056118-f1753d80-6c65-11e9-83e4-1ae693d35083.gif)
 
 ## Citations
 I used https://github.com/ElizWang/Enhanced_Pacman as an example for proper formatting in regards to all of my .md files, as well as an example for creating buttons. 
