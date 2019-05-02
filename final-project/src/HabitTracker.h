@@ -40,8 +40,19 @@ private:
 		DISPLAY_HABITS, //DISPLAY ALL USER HABITS AND WHETHER HABIT IS DONE OR NOT
 	};
 
+	//SETUP BUTTONS
+	void SetUpNewUserButton();
+	void SetUpOldUserButton();
+	void SetUpNextButton();
+	void SetUpHabitCompletedButton();
+	void SetUpHabitNotCompletedButton();
+	void SetUpNameHabitButton();
+
+	void UpdateNextButtonClicked();
+	void AddHabits();
+	void CheckHabitsDone();
 	/**
-	Quixk setup method to define dimensions and positions of buttons
+	Quick setup method to define dimensions and positions of buttons
 	*/
 	void SetUpButtons();
 
@@ -65,7 +76,7 @@ private:
 	*/
 	void prettyPrintProgress();
 
-	//BUTTONS & BUTTON MESSAGES
+	//BUTTONS & BUTTON MESSAGES - using ofxCenteredTrueTypeFont and the bounding rectangle
 	std::string new_user_button_message_;
 	ofRectangle new_user_button_;
 
@@ -91,7 +102,7 @@ private:
 	bool is_old_user_button_clicked_;
 	bool next_button_clicked_;
 	bool habit_completed_;
-	bool habit_not_completed;
+	bool habit_not_completed_;
 	bool name_habit_clicked_;
 
 	//BUTTON COLORS

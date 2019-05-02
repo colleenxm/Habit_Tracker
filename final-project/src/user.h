@@ -9,8 +9,8 @@ public:
 	Struct to contain habit - two fields, name of habit and boolean array of whether or not habit was done each day
 	*/
 	struct Habit {
-		std::string name;
-		std::vector<bool> habit_done;
+		std::string name_;
+		std::vector<bool> habit_done_;
 	};
 
 	/**
@@ -21,7 +21,7 @@ public:
 	/**
 	Constructor of username and number of habits the user plans on tracking
 	*/
-	User(std::string name, int habit_number);
+	User(std::string& name, size_t& habit_number);
 
 	/**
 	Getter for user name
@@ -41,12 +41,12 @@ public:
 	/**
 	Getter for the name of the habit, parameter is habit that you are getting name of
 	*/
-	const std::string getHabitName(Habit habit);
+	const std::string getHabitName(Habit& habit);
 
 	/**
 	Getter of  habit passed as parameter's done array, which tracks how many habits were done each day
 	*/
-	const std::vector<bool> getHabitDone(Habit habit);
+	const std::vector<bool> getHabitDone(Habit& habit);
 
 	/**
 	Sets the user name of user
@@ -66,7 +66,7 @@ public:
 	/**
 	Sets the name of given habit given input
 	*/
-	void setHabitName(Habit habit, std::string input);
+	void setHabitName(Habit& habit, std::string input);
 
 	/**
 	Adds new habit

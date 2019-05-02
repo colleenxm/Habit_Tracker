@@ -5,7 +5,7 @@
 User::User() {
 	user_name_ = "";
 }
-User::User(std::string name, int habit_number) {
+User::User(std::string& name, size_t& habit_number) {
 	user_name_ = name;
 }
 
@@ -19,29 +19,29 @@ const std::vector<User::Habit> User::getUserHabits() {
 const int User::getNumOfHabits() {
 	return num_habits_;
 }
-const std::string User::getHabitName(Habit habit) {
-	return habit.name;
+const std::string User::getHabitName(Habit& habit) {
+	return habit.name_;
 }
-const std::vector<bool> User::getHabitDone(Habit habit) {
-	return habit.habit_done;
+const std::vector<bool> User::getHabitDone(Habit& habit) {
+	return habit.habit_done_;
 }
 /*************************setters************************/
 void User::setUserName(std::string name) {
 	user_name_ = name;
 }
 void User::setHabitDone(int habit_num, bool done) {
-	user_habits_[habit_num].habit_done.push_back(done);
+	user_habits_[habit_num].habit_done_.push_back(done);
 }
 void User::setHabitNum(int num) {
 	num_habits_ = num;
 }
-void User::setHabitName(Habit habit, std::string input) {
-	habit.name = input;
+void User::setHabitName(Habit& habit, std::string input) {
+	habit.name_ = input;
 }
 void User::addHabit(std::string habit_name) {
 	Habit to_add_;
-	to_add_.name = habit_name;
-	to_add_.habit_done = {};
+	to_add_.name_ = habit_name;
+	to_add_.habit_done_ = {};
 	user_habits_.push_back(to_add_);
 }
 
