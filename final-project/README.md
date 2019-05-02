@@ -24,7 +24,10 @@ Steps:
 I used  Google C++ Style Guide (https://google.github.io/styleguide/cppguide.html). Note that methods required by OpenFrameworks deviate from this style.
 
 ## Demo
-![](demo.gif)
+<p align="center">
+  <img width="500" height="450" src="demo.gif">
+</p>
+
 
 
 ## Citations
