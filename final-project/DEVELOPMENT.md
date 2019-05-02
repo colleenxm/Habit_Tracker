@@ -42,7 +42,7 @@
 
 ## 5/1/19
 * Set up JSON parsing using ofxJSON wrapper for JSONCPP, created load from file method. 
-* Allowed for user to input file name to access pre-existing JSON file
+* Allowed for user to input file name to access pre-existing JSON file - used ofxInputField through ofxGUI to incorporate user name into JSON parsing. 
 * Used Json vecotr from ofxJSON to append new user data about habits into file that existed already.
 * Used sound player to add music for background
 * Fixed prettyprint to display boxes accurately and line up with habits
