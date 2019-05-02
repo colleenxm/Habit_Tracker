@@ -121,7 +121,7 @@ private:
 	std::vector<User::Habit> habits;
 	User::Habit curr_habit;
 
-	std::string question;
+	std::string question_;
 	size_t num;
 
 	ofxJSONElement result_;

@@ -116,13 +116,13 @@ void HabitTracker::update() {
 	case CHECK_HABIT_DONE:
 		if (num < current_user_.getNumOfHabits()) {
 			curr_habit = current_user_.getUserHabits().at(num);
-			question = "Did you " + curr_habit.name + " today?";
-			subtitle_font_.drawStringCentered(question, ofGetWidth() / 2, ((ofGetHeight() / 8) + 85));
+			question_ = "Did you " + curr_habit.name + " today?";
+			subtitle_font_.drawStringCentered(question_, ofGetWidth() / 2, ((ofGetHeight() / 8) + 85));
 			if (habit_completed_) {
-				current_user_.checkHabit(num, true);
+				current_user_.setHabitDone(num, true);
 				num++;
 			} else if (habit_not_completed) {
-				current_user_.checkHabit(num, false);
+				current_user_.setHabitDone(num, false);
 				num++;
 			}
 			habit_completed_ = false;
@@ -182,7 +182,7 @@ void HabitTracker::draw() {
 		ofSetColor(name_habit_button_color_);
 		ofDrawRectRounded(name_habit_button_, 10);
 		ofSetColor(0);
-		button_font_.drawStringCentered(name_habit_button_message_, ofGetWidth() / 2, 325);
+		button_font_.drawStringCentered(name_habit_button_message_, ofGetWidth() / 2, 345);
 		DrawNextButton();
 		update(); //Loop thru num of habits and ask user to input habit name
 		break;
@@ -339,8 +339,10 @@ void HabitTracker::prettyPrintProgress() {
 		}
 		for (int j = 0; j < result_["user_habits_"][i]["habit_done"].size(); j++) {
 			x_spacing_ += 85;
-			habit_display_.set(ofGetWidth() / 4 + x_spacing_, (ofGetHeight() / 8) + y_spacing_, 55, 55);
-			ofDrawRectRounded(habit_display_, 10);
+			if (result_["user_habits_"][i]["habit_done"][j].asBool()) {
+				habit_display_.set(ofGetWidth() / 4 + x_spacing_, (ofGetHeight() / 8) + y_spacing_, 55, 55);
+				ofDrawRectRounded(habit_display_, 10);
+			}
 		}
 		y_spacing_ += 75;
 	}
