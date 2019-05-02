@@ -22,7 +22,7 @@ void HabitTracker::setup() {
 	input_int_box_.setPosition(300, 280);
 	SetUpButtons();
 
-	num = 0;
+	num_ = 0;
 }
 
 void HabitTracker::SetUpButtons() {
@@ -89,7 +89,7 @@ void HabitTracker::update() {
 			curr_game_state_ = DISPLAY_HABITS;
 			break;
 		}
-		num = 0;
+		num_ = 0;
 		next_button_clicked_ = false;
 	}
 	
@@ -100,10 +100,10 @@ void HabitTracker::update() {
 		break;
 	case ADD_HABITS:
 		subtitle_font_.drawStringCentered("What would you like to name this habit?", ofGetWidth() / 2, ((ofGetHeight() / 8) + 85));
-		if (num < current_user_.getNumOfHabits()) {
+		if (num_ < current_user_.getNumOfHabits()) {
 			if (name_habit_clicked_) {
 				current_user_.addHabit(input_text_);
-				num++;
+				num_++;
 				name_habit_clicked_ = false;
 			}
 			else {
@@ -114,16 +114,16 @@ void HabitTracker::update() {
 		}
 		break;
 	case CHECK_HABIT_DONE:
-		if (num < current_user_.getNumOfHabits()) {
-			curr_habit = current_user_.getUserHabits().at(num);
+		if (num_ < current_user_.getNumOfHabits()) {
+			curr_habit = current_user_.getUserHabits().at(num_);
 			question_ = "Did you " + curr_habit.name + " today?";
 			subtitle_font_.drawStringCentered(question_, ofGetWidth() / 2, ((ofGetHeight() / 8) + 85));
 			if (habit_completed_) {
-				current_user_.setHabitDone(num, true);
-				num++;
+				current_user_.setHabitDone(num_, true);
+				num_++;
 			} else if (habit_not_completed) {
-				current_user_.setHabitDone(num, false);
-				num++;
+				current_user_.setHabitDone(num_, false);
+				num_++;
 			}
 			habit_completed_ = false;
 			habit_not_completed = false;
@@ -324,17 +324,15 @@ void HabitTracker::prettyPrintProgress() {
 	for (int i = 0; i < current_user_.getNumOfHabits(); i++) {
 		int x_spacing_ = 55;
 		switch (i) {
-		case 0: ofSetColor(red);
+		case 0: ofSetColor(red_);
 			break;
-		case 1: ofSetColor(orange);
+		case 1: ofSetColor(orange_);
 			break;
-		case 2:	ofSetColor(yellow);
+		case 2:	ofSetColor(yellow_);
 			break;
-		case 3: ofSetColor(green);
+		case 3: ofSetColor(green_);
 			break;
-		case 4: ofSetColor(blue);
-			break;
-		case 5: ofSetColor(violet);
+		case 4: ofSetColor(blue_);
 			break;
 		}
 		for (int j = 0; j < result_["user_habits_"][i]["habit_done"].size(); j++) {
@@ -354,15 +352,6 @@ void HabitTracker::loadUserFromFile() {
 		current_user_.setHabitNum(result_["num_habits_"].asInt());
 		for (int i = 0; i < current_user_.getNumOfHabits(); i++) {
 			current_user_.addHabit(result_["user_habits_"][i]["name"].asString());
-		}
-		int j = 0;
-		for (User::Habit old_current_habit : current_user_.getUserHabits()) {
-			std::cout << "Adding existing habit" << (current_user_.getUserHabits()[j].name)  << "\n";
-			for (int i = 0; i < old_current_habit.habit_done.size(); i++) {
-				old_current_habit.habit_done[i] = result_["user_habits_"][j]["habit_done"][i].asBool();
-				//std::cout << "Adding existing habit" << (current_user_.getUserHabits()[j].habit_done[i]) << "\n";
-			}
-			j++;
 		}
 	} else {
 		std::cout << "Parsing unsuccessful.";
