@@ -4,7 +4,6 @@
  * Requirements
  * Installation
  * Citations 
- * Erratum 
 
 ## Overview 
 I built a habit tracking app, which allows users to enter how many habits they would like to track and the names of each habit, and then check in periodically to record their progress. They can then see a simple, charted representation of their progress with each habit. 
@@ -26,7 +25,7 @@ I used  Google C++ Style Guide (https://google.github.io/styleguide/cppguide.htm
 
 ## Demo
 <p align="center">
-  <img width="500" height="450" src="demo.gif">
+  <img width="500" height="450" src="bin/data/demos/demo.gif">
 </p>
 
 
