@@ -64,9 +64,6 @@
     <ClCompile Include="src\HabitTracker.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="habitUtils.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -264,9 +261,6 @@
       <Filter>addons\ofxVectorGraphics\libs</Filter>
     </ClInclude>
     <ClInclude Include="src\HabitTracker.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="habitUtils.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

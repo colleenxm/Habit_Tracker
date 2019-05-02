@@ -15,11 +15,12 @@ void HabitTracker::setup() {
 
 	input_text_box_.setup();
 	input_text_box_.add(input_text_);
-	input_text_box_.setPosition(300, 180);
+	input_text_box_.setPosition(kInput_x_position_, kInput_y_position_);
 
 	input_int_box_.setup();
-	input_int_box_.add(input_int_.setup("number of habits: ", 3, 1, 5));
-	input_int_box_.setPosition(300, 280);
+	input_int_box_.add(input_int_.setup("number of habits: ", kDefault_num_habits_, kMin_num_habits_, kMax_num_habits_));
+	input_int_box_.setPosition(kInput_x_position_, kInput_y_position_ + kDefault_button_height_);
+
 	SetUpButtons();
 
 	num_ = 0;
@@ -36,10 +37,10 @@ void HabitTracker::SetUpButtons() {
 
 void HabitTracker::SetUpNewUserButton() {
 	new_user_button_message_ = "New User";
-	new_user_button_width_ = 200;
-	new_user_button_height_ = 100;
+	new_user_button_width_ = kDefault_button_width_;;
+	new_user_button_height_ = kDefault_button_height_;
 
-	new_user_button_.set((ofGetWidth() / 2 - (new_user_button_width_ / 2)), 200,
+	new_user_button_.set((ofGetWidth() / 2 - (new_user_button_width_ / 2)), kDefault_button_width_,
 		new_user_button_width_, new_user_button_height_);
 
 	is_new_user_button_clicked_ = false;
@@ -47,8 +48,8 @@ void HabitTracker::SetUpNewUserButton() {
 
 void HabitTracker::SetUpOldUserButton() {
 	old_user_button_message_ = "Returning User";
-	old_user_button_width_ = 200;
-	old_user_button_height_ = 100;
+	old_user_button_width_ = kDefault_button_width_;
+	old_user_button_height_ = kDefault_button_height_;
 
 	old_user_button_.set((ofGetWidth() / 2 - (old_user_button_width_ / 2)), 310,
 		old_user_button_width_, old_user_button_height_);
@@ -58,8 +59,8 @@ void HabitTracker::SetUpOldUserButton() {
 
 void HabitTracker::SetUpNextButton() {
 	next_button_message_ = "Next ->";
-	next_button_width_ = 200;
-	next_button_height_ = 100;
+	next_button_width_ = kDefault_button_width_;;
+	next_button_height_ = kDefault_button_height_;
 
 	next_button_.set((ofGetWidth() / 2 - (next_button_width_ / 2)), 425, next_button_width_, next_button_height_);
 
@@ -68,10 +69,10 @@ void HabitTracker::SetUpNextButton() {
 
 void HabitTracker::SetUpHabitCompletedButton() {
 	habit_completed_button_message_ = "Yes!";
-	habit_completed_button_width_ = 200;
-	habit_completed_button_height_ = 100;
+	habit_completed_button_width_ = kDefault_button_width_;;
+	habit_completed_button_height_ = kDefault_button_height_;
 
-	habit_completed_button_.set((ofGetWidth() / 2 - (new_user_button_width_ / 2)), 200,
+	habit_completed_button_.set((ofGetWidth() / 2 - (new_user_button_width_ / 2)), kDefault_button_width_,
 		habit_completed_button_width_, habit_completed_button_height_);
 
 	habit_completed_ = false;
@@ -79,8 +80,8 @@ void HabitTracker::SetUpHabitCompletedButton() {
 
 void HabitTracker::SetUpHabitNotCompletedButton() {
 	habit_not_completed_button_message_ = "No :(";
-	habit_not_completed_button_width_ = 200;
-	habit_not_completed_button_height_ = 100;
+	habit_not_completed_button_width_ = kDefault_button_width_;;
+	habit_not_completed_button_height_ = kDefault_button_height_;
 
 	habit_not_completed_button_.set((ofGetWidth() / 2 - (new_user_button_width_ / 2)), 310,
 		habit_not_completed_button_width_, habit_not_completed_button_height_);
@@ -89,8 +90,8 @@ void HabitTracker::SetUpHabitNotCompletedButton() {
 
 void HabitTracker::SetUpNameHabitButton() {
 	name_habit_button_message_ = "Name this habit";
-	name_habit_button_width_ = 200;
-	name_habit_button_height_ = 100;
+	name_habit_button_width_ = kDefault_button_width_;;
+	name_habit_button_height_ = kDefault_button_height_;
 	name_habit_clicked_ = false;
 	name_habit_button_.set((ofGetWidth() / 2 - (new_user_button_width_ / 2)), 310,
 		name_habit_button_width_, name_habit_button_height_);
@@ -176,80 +177,98 @@ void HabitTracker::update() {
 	}
 }
 
+void HabitTracker::DrawIntro() {
+	ofSetColor(0);
+	title_font_.drawStringCentered("Habit Tracker", ofGetWidth() / 2, ofGetHeight() / 8);
+	subtitle_font_.drawStringCentered("Are you a new or returning user?", ofGetWidth() / 2, ((ofGetHeight() / 8) + 85));
+
+	ofSetColor(new_user_button_color_);
+	ofDrawRectRounded(new_user_button_, 10);
+
+	ofSetColor(old_user_button_color_);
+	ofDrawRectRounded(old_user_button_, 10);
+
+	ofSetColor(0);
+	button_font_.drawStringCentered(new_user_button_message_, ofGetWidth() / 2, kUpper_button_message_position);
+	button_font_.drawStringCentered(old_user_button_message_, ofGetWidth() / 2, 353);
+}
+
+void HabitTracker::DrawNewUser() {
+	ofSetColor(0);
+	title_font_.drawStringCentered("Welcome " + current_user_.getUserName(), ofGetWidth() / 2, (ofGetHeight() / 8));
+	subtitle_font_.drawStringCentered("What is your name?", ofGetWidth() / 2, ((ofGetHeight() / 8) + 85));
+	input_text_box_.draw();
+	subtitle_font_.drawStringCentered("How many habits would you like to track?", ofGetWidth() / 2, ((ofGetHeight() / 8) + 175));
+	input_int_box_.draw();
+	DrawNextButton();
+	update();
+}
+
+void HabitTracker::DrawOldUser() {
+	ofSetColor(0);
+	title_font_.drawStringCentered("Welcome Back!", ofGetWidth() / 2, (ofGetHeight() / 8));
+	subtitle_font_.drawStringCentered("Enter your username:", ofGetWidth() / 2, ((ofGetHeight() / 8) + 85));
+	input_text_box_.draw();
+	DrawNextButton();
+	update();
+}
+
+void HabitTracker::DrawAddHabits() {
+	ofSetColor(0);
+	title_font_.drawStringCentered("Add habits: ", ofGetWidth() / 2, (ofGetHeight() / 8));
+	input_text_box_.draw();
+	ofSetColor(name_habit_button_color_);
+	ofDrawRectRounded(name_habit_button_, 10);
+	ofSetColor(0);
+	button_font_.drawStringCentered(name_habit_button_message_, ofGetWidth() / 2, kLower_button_message_position);
+	DrawNextButton();
+	update();
+}
+
+void HabitTracker::DrawCheckHabits() {
+	ofSetColor(0);
+	title_font_.drawStringCentered("Habit Checklist: ", ofGetWidth() / 2, (ofGetHeight() / 8));
+	DrawNextButton();
+
+	ofSetColor(habit_completed_button_color_);
+	ofDrawRectRounded(habit_completed_button_, 10);
+
+	ofSetColor(habit_not_completed_button_color_);
+	ofDrawRectRounded(habit_not_completed_button_, 10);
+
+	ofSetColor(0);
+	button_font_.drawStringCentered(habit_completed_button_message_, ofGetWidth() / 2, kUpper_button_message_position);
+	button_font_.drawStringCentered(habit_not_completed_button_message_, ofGetWidth() / 2, kLower_button_message_position + 10);
+	update();
+}
+
+void HabitTracker::DrawDisplay() {
+	ofSetColor(0);
+	title_font_.drawStringCentered("Habit Tracker", ofGetWidth() / 2, (ofGetHeight() / 8));
+	prettyPrintProgress();
+}
+
 //--------------------------------------------------------------
 void HabitTracker::draw() {
 	switch (curr_game_state_) {
 	case SHOW_INTRO:
-		ofSetColor(0);
-		title_font_.drawStringCentered("Habit Tracker", ofGetWidth()/2, ofGetHeight()/8);
-		subtitle_font_.drawStringCentered("Are you a new or returning user?", ofGetWidth()/2, ((ofGetHeight()/8) + 85));
-
-		ofSetColor(new_user_button_color_); 
-		ofDrawRectRounded(new_user_button_, 10);
-
-		ofSetColor(old_user_button_color_);
-		ofDrawRectRounded(old_user_button_, 10);
-
-		ofSetColor(0);
-		button_font_.drawStringCentered(new_user_button_message_, ofGetWidth() / 2, 243);
-		button_font_.drawStringCentered(old_user_button_message_, ofGetWidth() / 2, 353);
+		DrawIntro();
 		break;
-
 	case NEW_USER:
-		ofSetColor(0);
-		title_font_.drawStringCentered("Welcome " + current_user_.getUserName(), ofGetWidth() / 2, (ofGetHeight() / 8));
-		subtitle_font_.drawStringCentered("What is your name?", ofGetWidth() / 2, ((ofGetHeight() / 8) + 85));
-		input_text_box_.draw();
-		subtitle_font_.drawStringCentered("How many habits would you like to track?", ofGetWidth() / 2, ((ofGetHeight() / 8) + 175));
-		input_int_box_.draw();
-		DrawNextButton();
-		update(); 
+		DrawNewUser();
 		break;
-
 	case OLD_USER:
-		ofSetColor(0);
-		title_font_.drawStringCentered("Welcome Back!", ofGetWidth() / 2, (ofGetHeight() / 8));
-		subtitle_font_.drawStringCentered("Enter your username:", ofGetWidth() / 2, ((ofGetHeight() / 8) + 85));
-		input_text_box_.draw();
-		DrawNextButton();
-		update(); 
+		DrawOldUser();
 		break;
-
 	case ADD_HABITS:
-		ofSetColor(0);
-		title_font_.drawStringCentered("Add habits: ", ofGetWidth() / 2, (ofGetHeight() / 8));
-		input_text_box_.draw();
-		ofSetColor(name_habit_button_color_);
-		ofDrawRectRounded(name_habit_button_, 10);
-		ofSetColor(0);
-		button_font_.drawStringCentered(name_habit_button_message_, ofGetWidth() / 2, 345);
-		DrawNextButton();
-		update(); 
+		DrawAddHabits();
 		break;
-
 	case CHECK_HABIT_DONE:
-		ofSetColor(0);
-		title_font_.drawStringCentered("Habit Checklist: ", ofGetWidth() / 2, (ofGetHeight() / 8));
-		DrawNextButton();
-
-		ofSetColor(habit_completed_button_color_);
-		ofDrawRectRounded(habit_completed_button_, 10);
-
-		ofSetColor(habit_not_completed_button_color_);
-		ofDrawRectRounded(habit_not_completed_button_, 10);
-
-		ofSetColor(0);
-		button_font_.drawStringCentered(habit_completed_button_message_, ofGetWidth() / 2, 243);
-		button_font_.drawStringCentered(habit_not_completed_button_message_, ofGetWidth() / 2, 353);
-		update(); 
+		DrawCheckHabits();
 		break;
-
 	case DISPLAY_HABITS:
-		ofSetColor(0);
-		title_font_.drawStringCentered("Habit Tracker", ofGetWidth() / 2, (ofGetHeight() / 8));
-		prettyPrintProgress();
+		DrawDisplay();
 		break;
-
 	}
 }
 
@@ -349,39 +368,53 @@ void HabitTracker::updateFile() {
 	}
 	result_.save(json_file_name_);
 }
-void HabitTracker::prettyPrintProgress() {
-	std::cout << "Pretty print" << (current_user_.getUserHabits()[0].habit_done_.size()) << "\n";
-	int title_spacing_ = 85;
+
+void HabitTracker::PrettyPrintHabitNames() {
+	int title_spacing_ = 100;
 	for (int i = 0; i < current_user_.getNumOfHabits(); i++) {
 		ofSetColor(0);
 		std::string habit_name = current_user_.getUserHabits().at(i).name_;
-		subtitle_font_.drawStringCentered(habit_name, ofGetWidth() / 4, ((ofGetHeight() / 8) + title_spacing_));
+		subtitle_font_.drawStringCentered(habit_name, ofGetWidth() / 6, ((ofGetHeight() / 8) + title_spacing_));
 		title_spacing_ += 75;
 	}
-	int y_spacing_ = 55;
+}
+
+void HabitTracker::PrettyPrintHabitBoxes() {
+	int y_spacing_ = 70;
 	for (int i = 0; i < current_user_.getNumOfHabits(); i++) {
 		int x_spacing_ = 55;
-		switch (i) {
-		case 0: ofSetColor(red_);
-			break;
-		case 1: ofSetColor(orange_);
-			break;
-		case 2:	ofSetColor(yellow_);
-			break;
-		case 3: ofSetColor(green_);
-			break;
-		case 4: ofSetColor(blue_);
-			break;
-		}
 		for (int j = 0; j < result_["user_habits_"][i]["habit_done"].size(); j++) {
 			x_spacing_ += 85;
 			if (result_["user_habits_"][i]["habit_done"][j].asBool()) {
-				habit_display_.set(ofGetWidth() / 4 + x_spacing_, (ofGetHeight() / 8) + y_spacing_, 55, 55);
+				switch (i) {
+				case 0: ofSetColor(red_);
+					break;
+				case 1: ofSetColor(orange_);
+					break;
+				case 2:	ofSetColor(yellow_);
+					break;
+				case 3: ofSetColor(green_);
+					break;
+				case 4: ofSetColor(blue_);
+					break;
+				}
+				ofFill();
+				habit_display_.set((ofGetWidth() / 6) + x_spacing_, (ofGetHeight() / 8) + y_spacing_, 55, 55);
+				ofDrawRectRounded(habit_display_, 10);
+			} else {
+				ofSetColor(0);
+				ofNoFill();
+				habit_display_.set((ofGetWidth() / 6) + x_spacing_, (ofGetHeight() / 8) + y_spacing_, 55, 55);
 				ofDrawRectRounded(habit_display_, 10);
 			}
 		}
 		y_spacing_ += 75;
 	}
+}
+
+void HabitTracker::prettyPrintProgress() {
+	PrettyPrintHabitNames();
+	PrettyPrintHabitBoxes();
 }
 
 void HabitTracker::loadUserFromFile() {

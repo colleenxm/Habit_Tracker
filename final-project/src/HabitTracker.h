@@ -48,9 +48,39 @@ private:
 	void SetUpHabitNotCompletedButton();
 	void SetUpNameHabitButton();
 
+	//DRAW METHODS
+	void DrawIntro();
+	void DrawNewUser();
+	void DrawOldUser();
+	void DrawAddHabits();
+	void DrawCheckHabits();
+	void DrawDisplay();
+
+	/**
+	If next button was clicked, this goes through each game state and switches to the next
+	*/
 	void UpdateNextButtonClicked();
+
+	/**
+	Adds habits from user input
+	*/
 	void AddHabits();
+
+	/**
+	Checks via user input if each habit was done
+	*/
 	void CheckHabitsDone();
+
+	/**
+	Pretty prints the names of each habit
+	*/
+	void PrettyPrintHabitNames();
+
+	/**
+	Pretty prints the habit boxes (filled if none, empty border if not done)
+	*/
+	void PrettyPrintHabitBoxes();
+
 	/**
 	Quick setup method to define dimensions and positions of buttons
 	*/
@@ -171,4 +201,16 @@ private:
 	//MUSIC
 	std::string kBackground_music_file_name_ = "backgroundMusic.mp3";
 	ofSoundPlayer mySound;
+
+	//DEFAULT POSITIONS
+	size_t kMax_num_habits_ = 5;
+	size_t kMin_num_habits_ = 1;
+	size_t kDefault_num_habits_ = 3;
+	size_t kInput_x_position_ = 300;
+	size_t kInput_y_position_ = 180;
+	size_t kDefault_button_height_ = 100;
+	size_t kDefault_button_width_ = 200;
+	size_t kUpper_button_message_position = 243;
+	size_t kLower_button_message_position = 343;
+
 };
