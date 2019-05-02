@@ -26,3 +26,19 @@
 * Centered text
 * Using parameter  and gui panel to get inputfield but panel is moveable and not aesthetic
 * Cannot translate back end methods into update() function easily - have user as part of ofApp but causes issues. 
+* Adjusted code/structure to better fit critiques from code review.
+* Plan on fixing user input and adding JSON capability so code saves user data.
+* Plan to add music
+## 4/30/19
+* Changed number input section into slider for convinience
+* Got input_text_box_ to take user input and store it on the user model.
+* Fixed issues with adding habits to code by tracking how many times add habit button was pushed to avoid the issue of listeners, which was creating too many habits. Did same for CHECK_HABIT_DONE state to avoid too many checks.
+## 5/1/19
+* Set up JSON parsing using ofxJSON wrapper for JSONCPP, created load from file method. 
+* Allowed for user to input file name to access pre-existing JSON file
+* Used Json vecotr from ofxJSON to append new user data about habits into file that existed already.
+* Used sound player to add music for background
+* Fixed prettyprint to display boxes accurately and line up with habits
+* Cleaned up extraneous code, fixed comments, broke up large methods into smaller ones. Debatec moving some methods into habitUtils but based on discussion in code review, habitUtils does not represent anything new and therefore a new class is not needed nor useful. Would ultimately just be extra code that makes it more confusing, not less.
+* Adjusted boxes so that for days where habit wa snot completed, it shows a black outline of a box. 
+* Removed all magic numbers.
