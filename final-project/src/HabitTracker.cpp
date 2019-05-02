@@ -312,6 +312,7 @@ void HabitTracker::updateFile() {
 	result_.save(json_file_name_);
 }
 void HabitTracker::prettyPrintProgress() {
+	std::cout << "Pretty print" << (current_user_.getUserHabits()[0].habit_done.size()) << "\n";
 	int title_spacing_ = 85;
 	for (int i = 0; i < current_user_.getNumOfHabits(); i++) {
 		ofSetColor(0);
@@ -336,7 +337,7 @@ void HabitTracker::prettyPrintProgress() {
 		case 5: ofSetColor(violet);
 			break;
 		}
-		for (int j = 0; j < current_user_.getUserHabits()[0].habit_done.size(); j++) {
+		for (int j = 0; j < result_["user_habits_"][i]["habit_done"].size(); j++) {
 			x_spacing_ += 85;
 			habit_display_.set(ofGetWidth() / 4 + x_spacing_, (ofGetHeight() / 8) + y_spacing_, 55, 55);
 			ofDrawRectRounded(habit_display_, 10);
@@ -354,8 +355,10 @@ void HabitTracker::loadUserFromFile() {
 		}
 		int j = 0;
 		for (User::Habit old_current_habit : current_user_.getUserHabits()) {
+			std::cout << "Adding existing habit" << (current_user_.getUserHabits()[j].name)  << "\n";
 			for (int i = 0; i < old_current_habit.habit_done.size(); i++) {
 				old_current_habit.habit_done[i] = result_["user_habits_"][j]["habit_done"][i].asBool();
+				//std::cout << "Adding existing habit" << (current_user_.getUserHabits()[j].habit_done[i]) << "\n";
 			}
 			j++;
 		}

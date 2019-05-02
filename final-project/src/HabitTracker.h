@@ -128,4 +128,5 @@ private:
 	std::string json_file_name_;
 	std::string kBackground_music_file_name_ = "backgroundMusic.mp3";
 	ofSoundPlayer mySound;
+	int num_of_days_;
 };
