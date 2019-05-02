@@ -3,6 +3,8 @@
  * Overview 
  * Requirements
  * Installation
+ * Code style
+ * Demo
  * Citations 
 
 ## Overview 
