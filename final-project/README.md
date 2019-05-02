@@ -24,6 +24,7 @@ Steps:
 I used  Google C++ Style Guide (https://google.github.io/styleguide/cppguide.html). Note that methods required by OpenFrameworks deviate from this style.
 
 ## Demo
+For the sake of time, I only put the first and last stages of the app in the gif. First is when you are a new user, you create a user name and add the habits that you would like to track. Then, you check off whether or not you did them that day. The gif then pauses and skips to a further date in to better show the progress, although with regular use you can see that you can only track the progress one day at a time. In the second part of the gif, the app gets data from the JSON file created earlier with the user's name and asks for progress on the same habits, and then shows how the progress ocurred over a number of days. 
 
 ![demo](https://user-images.githubusercontent.com/42981164/57056118-f1753d80-6c65-11e9-83e4-1ae693d35083.gif)
 
