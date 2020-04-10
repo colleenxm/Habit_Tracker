@@ -5,7 +5,8 @@
  * Installation
  * Code style
  * Demo
- * Citations 
+ * Citations
+ * Erratum (to all of my students: please read this)
 
 ## Overview 
 I built a habit tracking app, which allows users to enter how many habits they would like to track and the names of each habit, and then check in periodically to record their progress. They can then see a simple, charted representation of their progress with each habit. 
